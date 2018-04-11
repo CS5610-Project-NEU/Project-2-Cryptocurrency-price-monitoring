@@ -3,7 +3,7 @@ defmodule CoinbaseWeb.RoomsChannel do
 
   def join("rooms:lobby", payload, socket) do
     if authorized?(payload) do
-      IO.inspect socket
+      IO.inspect "dasdas"
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}

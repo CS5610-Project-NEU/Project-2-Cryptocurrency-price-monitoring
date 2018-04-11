@@ -16,17 +16,8 @@ export default function coinprice_init(store) {
 
 let Coinprice = connect((state) => state)((props) => {
 
-    props.channel.join()
-        .receive("ok", this.gotView.bind(this))
-        .receive("error", resp => {
-            console.log("Unable to join", resp)
-        });
     return (
         <Router>
-            <div>
-                {}
-            </div>
-
         </Router>
     );
 });
