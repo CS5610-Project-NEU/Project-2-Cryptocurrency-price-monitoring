@@ -19,3 +19,15 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+
+import store from './store';
+import api from './api';
+import socket from "./socket"
+
+import coinprice_init from "./cs/coinprice"
+
+$(function() {
+
+    coinprice_init(store);
+});
