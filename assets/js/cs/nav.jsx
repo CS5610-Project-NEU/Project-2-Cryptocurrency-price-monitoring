@@ -51,10 +51,12 @@ class Nav extends React.Component{
 
                     <NavLink to="/" href="#"  className="nav-link">
 
-                    <a class="navbar-brand" href="#">
-                        <img src="/images/coin.svg" width="30" height="30" class="d-inline-block align-top" alt=""></img>
+                              <span className="navbar-brand">
+                              <img src="/images/coin.svg" width="30" height="30" class="d-inline-block align-top" alt=""></img>
                             WebCoin
-                    </a>
+                                </span>
+
+
 
                     </NavLink>
 

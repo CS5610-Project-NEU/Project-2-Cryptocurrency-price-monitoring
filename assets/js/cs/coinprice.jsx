@@ -27,6 +27,7 @@ let Coinprice = connect((state) => state)((props) => {
                 <Route path="/" exact={true} render={() =>
                     <div>
                          <Nav/>
+                        <Home/>
                     </div>
                 } />
 
