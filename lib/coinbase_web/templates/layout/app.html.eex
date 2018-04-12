@@ -12,15 +12,17 @@
   </head>
 
   <body>
-    <div class="container">
+
       <header class="header">
 
       </header>
+
+
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
 
-    </div> <!-- /container -->
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

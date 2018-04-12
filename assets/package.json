@@ -6,6 +6,7 @@
     "watch": "brunch watch --stdin"
   },
   "dependencies": {
+    "argon": "^1.0.0",
     "bootstrap": "^4.1.0",
     "deep-freeze": "0.0.1",
     "jquery": "^3.3.1",
