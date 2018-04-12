@@ -18,6 +18,13 @@ let Coinprice = connect((state) => state)((props) => {
 
     return (
         <Router>
+            <div>
+                <Route path="/" exact={true} render={() =>
+                    <div>
+<label>Welcome to the app</label>
+                    </div>
+                } />
+            </div>
         </Router>
     );
 });
