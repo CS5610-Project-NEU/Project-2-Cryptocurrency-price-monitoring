@@ -27,10 +27,10 @@ import socket from "./socket"
 
 import coinprice_init from "./cs/coinprice"
 
-function update_store(state) {
+function update_store(datas) {
     store.dispatch({
         type: 'UPDATE_ALL',
-        datas: state,
+        datas: datas,
     });
 
 }
