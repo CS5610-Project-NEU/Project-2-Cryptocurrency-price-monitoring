@@ -39,7 +39,7 @@ class Nav extends React.Component{
                 <nav class="navbar navbar-dark bg-dark ">
                     <div className={"row"}>
 
-                        <div className={"col-3"} style={{position:"relative",top:"20%"}}>
+                        <div id={"toggle-btn"} className={"col-3"} style={{position:"relative",top:"5px"}}>
                         <button class="navbar-toggler" type="button" onClick={this.toggleNavbar}>
                             <span class="navbar-toggler-icon"></span>
                         </button>
