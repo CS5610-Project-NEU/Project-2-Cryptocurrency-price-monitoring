@@ -31,6 +31,7 @@ import socket from "./socket"
 
 
 
+
 function root_reducer(state0, action) {
     console.log("reducer", action);
     // {posts, users, form} is ES6 shorthand for
