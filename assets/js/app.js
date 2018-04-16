@@ -28,6 +28,7 @@ import socket from "./socket"
 import coinprice_init from "./cs/coinprice"
 
 function update_store(datas) {
+    console.log(datas);
     store.dispatch({
         type: 'UPDATE_ALL',
         datas: datas,
@@ -39,7 +40,7 @@ $(function() {
 
     let default_channel = socket.channel("rooms:lobby", {});
     default_channel.join();
-    default_channel.on("update", update_store(this));
+    default_channel.on("new_state", update_store(this));
 
     coinprice_init(store);
 });

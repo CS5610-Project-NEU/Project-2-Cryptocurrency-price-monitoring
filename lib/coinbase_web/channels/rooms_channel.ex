@@ -1,14 +1,35 @@
 defmodule CoinbaseWeb.RoomsChannel do
   use CoinbaseWeb, :channel
 
+  import Coinbase.CoinbaseApi
+
+
+
   def join("rooms:lobby", payload, socket) do
-    if authorized?(payload) do
       IO.inspect "dasdas"
       {:ok, socket}
-    else
-      {:error, %{reason: "unauthorized"}}
-    end
+
   end
+
+  def handle_in("new_state", state, socket) do
+    IO.inspect state
+    IO.inspect "new state state state"
+    broadcast! socket, "new_state", state
+    {:noreply, socket}
+  end
+
+#  def handle_in("new_time", msg, socket) do
+#    IO.inspect msg
+#    IO.inspect "new time time tiemeeeeeewrwer"
+#
+#  end
+
+  def handle_in("new_time", msg, socket) do
+    IO.inspect "new time time tiemeeeeeewrwer"
+    push socket, "new_time", msg
+    {:noreply, socket}
+  end
+
 
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client

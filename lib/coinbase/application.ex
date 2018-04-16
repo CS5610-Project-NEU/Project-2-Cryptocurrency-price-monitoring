@@ -14,6 +14,8 @@ defmodule Coinbase.Application do
       supervisor(CoinbaseWeb.Endpoint, []),
       # Start your own worker by calling: Coinbase.Worker.start_link(arg1, arg2, arg3)
       # worker(Coinbase.Worker, [arg1, arg2, arg3]),
+      worker(Coinbase.UpdateChannel, []),
+      worker(Coinbase.Timer, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
