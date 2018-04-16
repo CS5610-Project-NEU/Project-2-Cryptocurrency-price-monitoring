@@ -24,11 +24,11 @@ defmodule CoinbaseWeb.RoomsChannel do
 #
 #  end
 
-  def handle_in("new", msg, socket) do
-    IO.inspect "new time time tiemeeeeeewrwer"
-    push socket, "new_time", msg
-    {:noreply, socket}
-  end
+#  def handle_in("new", msg, socket) do
+#    IO.inspect "new time time tiemeeeeeewrwer"
+#    push socket, "new_time", msg
+#    {:noreply, socket}
+#  end
 
 
   # Channels can be used in a request/response fashion
