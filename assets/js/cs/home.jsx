@@ -10,94 +10,44 @@ import {Line} from 'react-chartjs-2';
 function Home(props) {
 
 
+    function get_datasets(data,name,color){
+        return {
+            datasets: [{
+                label: name,
+                data: [...data],
+                borderColor: color,
+                fill: false
+            }]
+        };
+    }
 
-  let data_month= {
 
-      datasets: [{
-          label: "My First dataset",
-          data: [{
-              x: '2018-4-12 07:00',
-              y: Math.random() * 100
+    function get_option(time_scale){
+        return {
+
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        color: "rgba(0, 0, 0, 0)"},
+                    type: 'time',
+                    distribution: 'linear',
+                    time: {
+                        unit: time_scale,
+                    },
+                    ticks: {
+                        autoSkip: true,
+                        source: 'data',
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        color: "rgba(0, 0, 0, 0)",
+                    }
+                }]
             },
-              {
-                  x: '2018-4-13 08:00',
-                  y: Math.random() * 100
-              },
-              {
-                  x: '2018-4-14 09:00',
-                  y: Math.random() * 100
-              },
-              {
-                  x: '2018-4-15 10:00',
-                  y: Math.random() * 100
-              },
-              {
-                  x: '2018-4-16 11:00',
-                  y: Math.random() * 100
-              },
-              {
-                  x: '2018-4-17 12:00',
-                  y: Math.random() * 100
-              },{
-                  x: '2018-4-18 07:00',
-                  y: Math.random() * 100
-              },
-              {
-                  x: '2018-4-19 08:00',
-                  y: Math.random() * 100
-              },
-              {
-                  x: '2018-4-20 09:00',
-                  y: Math.random() * 100
-              },
-              {
-                  x: '2018-4-21 10:00',
-                  y: Math.random() * 100
-              },
-              {
-                  x: '2018-4-22 11:00',
-                  y: Math.random() * 100
-              },
-              {
-                  x: '2018-4-23 12:00',
-                  y: Math.random() * 100
-              },
-          ],
-          borderColor: "#3e95cd",
-          fill: false
-      }]
-  };
-
-  let option_month = {
-
-      scales: {
-          xAxes: [{
-              gridLines: {
-                  color: "rgba(0, 0, 0, 0)"},
-              type: 'time',
-              distribution: 'linear',
-              time: {
-                  unit: 'day',
-
-              },
-              ticks: {
-                  autoSkip: false,
-                  source: 'data',
-              }
-
-          }],
-
-          yAxes: [{
-              gridLines: {
-                  color: "rgba(0, 0, 0, 0)",
-              }
-          }]
-      },
-      legend: false
-  };
-
-
-
+            legend: false
+        };
+    }
 
 
 
@@ -171,7 +121,7 @@ function Home(props) {
 
                 },
                 ticks: {
-                    autoSkip: false,
+                    autoSkip: true,
                     source: 'data',
                 }
 
@@ -187,8 +137,6 @@ function Home(props) {
     };
 
 
-
-
  return <div style={{backgroundColor:"#dfe4ea", height:"800px"}}>
 
      <div className={"row"}>
@@ -196,10 +144,25 @@ function Home(props) {
              <div class="card">
                  <div class="card-body">
                      <h5 class="card-title">bitcoin</h5>
-                     <Line data={data_month}
+                     <Line data={get_datasets([...props.bitcoin_day_coinbase],"bitcoin","#f1c40f")}
                            width={100}
                            height={50}
-                           options ={option_month}
+                           options ={get_option('hour')}
+                     />
+                     <a href="#" class="btn btn-primary">Buy bitcoin</a>
+                 </div>
+             </div>
+
+         </div>
+         <div className={"col-3"}>
+
+             <div class="card">
+                 <div class="card-body">
+                     <h5 class="card-title">ethereum</h5>
+                     <Line data={get_datasets([...props.ethereum_day_coinbase],"ethereum","#e74c3c")}
+                           width={100}
+                           height={50}
+                           options ={get_option('hour')}
                      />
                      <a href="#" class="btn btn-primary">Buy bitcoin</a>
                  </div>
@@ -209,45 +172,43 @@ function Home(props) {
          <div className={"col-3"}>
              <div class="card">
                  <div class="card-body">
+                     <h5 class="card-title">litcoin</h5>
+                     <Line data={get_datasets([...props.litcoin_day_coinbase],'litcoin',"#27ae60")}
+                           width={100}
+                           height={50}
+                           options ={get_option('hour')}
+                     />
+                     <a href="#" class="btn btn-primary">Buy bitcoin</a>
+                 </div>
+             </div>
+
+         </div>
+
+         <div className={"col-3"}>
+             <div class="card">
+                 <div class="card-body">
                      <h5 class="card-title">bitcoinCash</h5>
-                     <Line data={data_hour}
+                     <Line data={get_datasets([...props.cash_day_coinbase],"bitcoinCash","#2980b9")}
                            width={100}
                            height={50}
-                           options ={option_hour}
+                           options ={get_option('hour')}
                      />
-                     <a href="#" class="btn btn-primary">Buy bitcoinCash</a>
+                     <a href="#" class="btn btn-primary">Buy bitcoin</a>
                  </div>
              </div>
 
          </div>
-         <div className={"col-3"}>
-             <div class="card">
-                 <div class="card-body">
-                     <h5 class="card-title">Ethereum</h5>
-                     <Line data={data_month}
-                           width={100}
-                           height={50}
-                           options ={option_month}
-                     />
-                     <a href="#" class="btn btn-primary">Buy Ethereum</a>
-                 </div>
-             </div>
+     </div>
 
-         </div>
 
-         <div className={"col-3"}>
-             <div class="card">
-                 <div class="card-body">
-                     <h5 class="card-title">Litecoin</h5>
-                     <Line data={data_month}
-                           width={100}
-                           height={50}
-                           options ={option_month}
-                     />
-                     <a href="#" class="btn btn-primary">Buy Litecoin</a>
-                 </div>
-             </div>
-
+     <div class="card">
+         <div class="card-body">
+             <h5 class="card-title">bitcoinCash</h5>
+             <Line data={get_datasets([...props.bitcoin_day_coinbase],"bitcoinCash","#c0392b")}
+                   width={100}
+                   height={50}
+                   options ={option_hour}
+             />
          </div>
      </div>
 
@@ -280,8 +241,21 @@ function Home(props) {
 
 function state2props(state) {
     return {
-        token: state.token,
+       // token: state.token,
         // data: [20, 10],
+        bitcoin_curr_coinbase:state.bitcoin_curr_coinbase,
+        bitcoin_day_coinbase:state.bitcoin_day_coinbase,
+
+        ethereum_curr_coinbase:state.ethereum_curr_coinbase,
+        ethereum_day_coinbase:state.ethereum_day_coinbase,
+
+        litcoin_curr_coinbase:state.litcoin_curr_coinbase,
+        litcoin_day_coinbase:state.litcoin_day_coinbase,
+
+        cash_curr_coinbase:state.cash_curr_coinbase,
+        cash_day_coinbase:state.cash_day_coinbase,
+
+
     };
 }
 
