@@ -24,7 +24,7 @@ defmodule CoinbaseWeb.RoomsChannel do
 #
 #  end
 
-  def handle_in("new_time", msg, socket) do
+  def handle_in("new", msg, socket) do
     IO.inspect "new time time tiemeeeeeewrwer"
     push socket, "new_time", msg
     {:noreply, socket}

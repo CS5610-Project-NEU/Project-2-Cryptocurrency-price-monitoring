@@ -4,7 +4,7 @@ defmodule CoinbaseWeb.UserSocket do
   ## Channels
   # channel "room:*", CoinbaseWeb.RoomChannel
 
-  channel "rooms:lobby", CoinbaseWeb.RoomsChannel
+  channel "rooms:*", CoinbaseWeb.RoomsChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

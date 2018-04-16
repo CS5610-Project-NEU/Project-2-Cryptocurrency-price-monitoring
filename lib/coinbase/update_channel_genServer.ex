@@ -150,8 +150,9 @@ defmodule Coinbase.UpdateChannel do
 
   defp broadcast(state) do
 
-   # IO.inspect "tick tock... tick tock"
+    IO.inspect "tick tock... tick tock"
 
+    CoinbaseWeb.Endpoint.broadcast! "rooms:*", "new", state
 
     CoinbaseWeb.Endpoint.broadcast! "rooms:lobby", "new_state", state
 
