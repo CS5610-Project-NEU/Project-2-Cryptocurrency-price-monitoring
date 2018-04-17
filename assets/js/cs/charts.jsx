@@ -188,7 +188,7 @@ class Charts extends React.Component{
             time_scale = "week";
         }
         else if (this.state.sel_time === "M"){sel_time = "SINCE LAST MONTH";
-            sel_W = "nav-link ";
+            sel_M = "nav-link ";
             diff = get_diff(curr_month);
             perc = get_percentage(curr_month);
             dataset = curr_month;
