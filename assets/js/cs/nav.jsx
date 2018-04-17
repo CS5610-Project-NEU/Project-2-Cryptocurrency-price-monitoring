@@ -93,9 +93,9 @@ class Nav extends React.Component{
                             </div>
                             <div className={"col-3 border border-light"}>
 
-                                <NavItem>
-                                    <NavLink to="/signup" href="#"  className="nav-link">Sign up</NavLink>
-                                </NavItem>
+                            <NavItem>
+                                <NavLink to="/signup" href="#"  className="nav-link">Sign Up</NavLink>
+                            </NavItem>
                             </div>
 
                         </div>

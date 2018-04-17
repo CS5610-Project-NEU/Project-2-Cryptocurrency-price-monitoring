@@ -21,19 +21,6 @@ function Signin(props) {
     </div>)
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 function state2props(state) {
     return {
         token: state.token,
