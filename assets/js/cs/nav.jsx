@@ -67,20 +67,20 @@ class Nav extends React.Component{
 
                         <div className={"row"}>
 
-
-                            <div className={"col-3"}>
-                                <NavItem>
-                                    <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink>
-                                </NavItem>
-                            </div>
-
-
                             <div className={"col-3"}>
 
                                 <NavItem>
                                     <NavLink to="/dashboard" href="#"  className="nav-link">Dashboard</NavLink>
                                 </NavItem>
                             </div>
+
+
+                            <div className={"col-2"}>
+                                <NavItem>
+                                    <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink>
+                                </NavItem>
+                            </div>
+
 
 
                             <div className={"col-3"}>
@@ -91,10 +91,10 @@ class Nav extends React.Component{
                                 </NavItem>
 
                             </div>
-                            <div className={"col-3 border border-light"}>
+                            <div className={"col-4 border border-light"}>
 
                             <NavItem>
-                                <NavLink to="/signup" href="#"  className="nav-link">Sign Up</NavLink>
+                                <NavLink to="/signup" href="#" className="nav-link">Sign Up</NavLink>
                             </NavItem>
                             </div>
 
