@@ -9,6 +9,8 @@ import Home from './home'
 
 import Signin from './signin'
 
+import Signup from './signup'
+
 import Charts from './charts'
 
 import Dashboard from './dashboard'
@@ -44,6 +46,13 @@ let Coinprice = connect((state) => state)((props) => {
                     </div>
                 } />
 
+                <Route path="/signup" exact={true} render={() =>
+                    <div>
+                        <Nav/>
+                        <Signup/>
+                    </div>
+                } />
+
                 <Route path="/charts" exact={true} render={() =>
                     <div>
                         <Nav/>
@@ -62,5 +71,3 @@ let Coinprice = connect((state) => state)((props) => {
         </Router>
     );
 });
-
-

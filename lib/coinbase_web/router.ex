@@ -19,6 +19,7 @@ defmodule CoinbaseWeb.Router do
 
     get "/", PageController, :index
     get "/signin", PageController, :index
+    get "/signup", PageController, :index
     get "/charts", PageController, :index
     get "/dashboard", PageController, :index
   end
