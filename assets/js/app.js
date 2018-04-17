@@ -29,6 +29,8 @@ import coinprice_init from "./cs/coinprice"
 
 function update_store(datas) {
 
+    console.log(datas);
+
     store.dispatch({
         type: 'UPDATE_ALL',
         datas: datas,

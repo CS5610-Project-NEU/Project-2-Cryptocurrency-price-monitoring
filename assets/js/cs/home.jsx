@@ -24,9 +24,10 @@ function Home(props) {
 
     function get_option(time_scale){
         return {
-
+            elements: { point: { radius: 0 } },
             scales: {
                 xAxes: [{
+                    display: false,
                     gridLines: {
                         color: "rgba(0, 0, 0, 0)"},
                     type: 'time',
@@ -40,6 +41,7 @@ function Home(props) {
                     }
                 }],
                 yAxes: [{
+                    display: false,
                     gridLines: {
                         color: "rgba(0, 0, 0, 0)",
                     }
@@ -47,6 +49,36 @@ function Home(props) {
             },
             legend: false
         };
+    }
+
+    function get_percent(prices){
+        if (prices.length > 0){
+        let start_price = prices[prices.length - 1].y;
+        let end_price = prices[0].y;
+        let diff = Math.round((end_price - start_price) * 100) / 100 ;
+        let res = "";
+        let perc = Math.round((diff / start_price) * 10000) / 100 ;
+        console.log(prices);
+        console.log(diff);
+        if (diff > 0){
+            res = "+" + diff + "       +" + perc + "%"
+
+        }else if(diff < 0){
+            res = diff + "       " + perc + "%"
+        }else{
+            res = "0       0%"
+        }
+
+            return res
+
+
+        }
+        else {
+            return null
+        }
+
+
+
     }
 
 
@@ -136,93 +168,136 @@ function Home(props) {
         legend: false
     };
 
+ function get_info(Name,curr_price,prices){
+
+     return <div>
+         <div className={"row"}>
+             <div className={"col-9"}>
+                 <h5 class="card-title">{Name}</h5>
+             </div>
+
+             <div className={"col-3"}>
+                 <var>24h</var>
+             </div>
+
+         </div>
+
+         <div className={"row"}>
+             <div className={"col-9"}>
+                 <h2>${curr_price}</h2>
+             </div>
+
+         </div>
+         <var>{get_percent(prices)}</var>
+
+
+     </div>
+ }
 
  return <div style={{backgroundColor:"#dfe4ea", height:"800px"}}>
 
-     <div className={"row"}>
-         <div className={"col-3"}>
-             <div class="card">
+     <div className={"container"} style={{position:"relative",top:"100px"}}>
+         <div className={"row justify-content-md-center"}>
+         <h1>Buy and sell digital currency</h1>
+         </div>
+
+         <div className={"row justify-content-md-center"}>
+             <h3>Webcoin is the easiest and most trusted place to buy,</h3>
+             <h3>sell, and manage your digital currency.</h3>
+         </div>
+     </div>
+
+     <div className={"container"} style={{position:"relative",top:"160px"}}>
+
+     <div className={"row justify-content-md-center"}>
+         <div className={"col-3 "}>
+             <div class="card border border-warning">
                  <div class="card-body">
-                     <h5 class="card-title">bitcoin</h5>
-                     <Line data={get_datasets([...props.bitcoin_day_coinbase],"bitcoin","#f1c40f")}
+                     {get_info("Bitcoin",props.bitcoin_curr_coinbase,props.bitcoin_day_coinbase)}
+                     <Line data={get_datasets(props.bitcoin_day_coinbase,"bitcoin","#f1c40f")}
                            width={100}
                            height={50}
                            options ={get_option('hour')}
                      />
-                     <a href="#" class="btn btn-primary">Buy bitcoin</a>
+                     <a href="#" class="btn btn-outline-dark">Buy Bitcoin</a>
+                 </div>
+             </div>
+         </div>
+         <div className={"col-3 "}>
+
+             <div class="card border border-danger">
+                 <div class="card-body">
+                     {get_info("Ethereum",props.ethereum_curr_coinbase,props.ethereum_day_coinbase)}
+                     <Line data={get_datasets(props.ethereum_day_coinbase,"ethereum","#e74c3c")}
+                           width={100}
+                           height={50}
+                           options ={get_option('hour')}
+                     />
+                     <a href="#" class="btn btn-outline-dark">Buy Ethereum</a>
                  </div>
              </div>
 
          </div>
          <div className={"col-3"}>
-
-             <div class="card">
+             <div class="card border-success">
                  <div class="card-body">
-                     <h5 class="card-title">ethereum</h5>
-                     <Line data={get_datasets([...props.ethereum_day_coinbase],"ethereum","#e74c3c")}
+                     {get_info("Litcoin",props.litcoin_curr_coinbase,props.litcoin_day_coinbase)}
+                     <Line data={get_datasets(props.litcoin_day_coinbase,'litcoin',"#27ae60")}
                            width={100}
                            height={50}
                            options ={get_option('hour')}
                      />
-                     <a href="#" class="btn btn-primary">Buy bitcoin</a>
-                 </div>
-             </div>
-
-         </div>
-         <div className={"col-3"}>
-             <div class="card">
-                 <div class="card-body">
-                     <h5 class="card-title">litcoin</h5>
-                     <Line data={get_datasets([...props.litcoin_day_coinbase],'litcoin',"#27ae60")}
-                           width={100}
-                           height={50}
-                           options ={get_option('hour')}
-                     />
-                     <a href="#" class="btn btn-primary">Buy bitcoin</a>
+                     <a href="#" class="btn btn-outline-dark">Buy Litcoin</a>
                  </div>
              </div>
 
          </div>
 
          <div className={"col-3"}>
-             <div class="card">
+             <div class="card border-primary">
                  <div class="card-body">
-                     <h5 class="card-title">bitcoinCash</h5>
-                     <Line data={get_datasets([...props.cash_day_coinbase],"bitcoinCash","#2980b9")}
+                     {get_info("BitcoinCash",props.cash_curr_coinbase,props.cash_day_coinbase)}
+                     <Line data={get_datasets(props.cash_day_coinbase,"bitcoinCash","#2980b9")}
                            width={100}
                            height={50}
                            options ={get_option('hour')}
                      />
-                     <a href="#" class="btn btn-primary">Buy bitcoin</a>
+                     <a href="#" class="btn btn-outline-dark">Buy BitcoinCash</a>
                  </div>
              </div>
 
          </div>
      </div>
-
-
-     <div class="card">
-         <div class="card-body">
-             <h5 class="card-title">bitcoinCash</h5>
-             <Line data={get_datasets([...props.bitcoin_day_coinbase],"bitcoinCash","#c0392b")}
-                   width={100}
-                   height={50}
-                   options ={option_hour}
-             />
-         </div>
      </div>
 
 
-     <div class="card">
-         <div class="card-body">
-             <h5 class="card-title">bitcoinCash</h5>
-             <Line data={data_hour}
-                   width={100}
-                   height={50}
-                   options ={option_hour}
-             />
-         </div>
-     </div>
+
+
+
+
+
+     {/*<div class="card">*/}
+         {/*<div class="card-body">*/}
+             {/*<h5 class="card-title">bitcoinCash</h5>*/}
+             {/*<Line data={get_datasets(props.bitcoin_day_coinbase,"bitcoinCash","#c0392b")}*/}
+                   {/*width={100}*/}
+                   {/*height={50}*/}
+                   {/*options ={option_hour}*/}
+             {/*/>*/}
+         {/*</div>*/}
+     {/*</div>*/}
+
+
+     {/*<div class="card">*/}
+         {/*<div class="card-body">*/}
+             {/*<h5 class="card-title">bitcoinCash</h5>*/}
+             {/*<Line data={data_hour}*/}
+                   {/*width={100}*/}
+                   {/*height={50}*/}
+                   {/*options ={option_hour}*/}
+             {/*/>*/}
+         {/*</div>*/}
+     {/*</div>*/}
 
 
 
