@@ -18,6 +18,7 @@ defmodule CoinbaseWeb.Router do
 
     get "/", PageController, :index
     get "/signin", PageController, :index
+    get "/charts", PageController, :index
   end
 
   # Other scopes may use custom stacks.

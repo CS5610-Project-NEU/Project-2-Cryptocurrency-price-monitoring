@@ -45,7 +45,7 @@ class Nav extends React.Component{
                         </button>
                         </div>
 
-                    <div className={"col-5"}>
+                    <div className={"col-4"}>
 
 
 
@@ -55,27 +55,33 @@ class Nav extends React.Component{
                               <img src="/images/coin.svg" width="30" height="30" class="d-inline-block align-top" alt=""></img>
                             WebCoin
                                 </span>
-
-
-
                     </NavLink>
 
 
+
                     </div>
                     </div>
 
 
-                    <ul className="navbar-nav">
+                    <ul className="navbar-nav ">
 
                         <div className={"row"}>
-                            <div className={"col"}>
+
+                            <div className={"col-3"}>
+
+
+                                <NavItem>
+                                    <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink>
+                                </NavItem>
+                            </div>
+                            <div className={"col-4"}>
 
 
                                 <NavItem>
                                     <NavLink to="/signin" href="#"  className="nav-link">Sign in</NavLink>
                                 </NavItem>
                             </div>
-                            <div className={"col"}>
+                            <div className={"col-5"}>
                         <NavItem>
                             <Button outline color="secondary">Sign up</Button>{' '}
                         </NavItem>

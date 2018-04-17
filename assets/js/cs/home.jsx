@@ -71,15 +71,10 @@ function Home(props) {
 
             return res
 
-
         }
         else {
             return null
-        }
-
-
-
-    }
+        }}
 
 
 

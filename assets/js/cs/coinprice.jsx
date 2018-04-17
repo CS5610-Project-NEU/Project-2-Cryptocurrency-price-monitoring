@@ -9,6 +9,8 @@ import Home from './home'
 
 import Signin from './signin'
 
+import Charts from './charts'
+
 export default function coinprice_init(store) {
     ReactDOM.render(
         <Provider store={store}>
@@ -38,6 +40,12 @@ let Coinprice = connect((state) => state)((props) => {
                     </div>
                 } />
 
+                <Route path="/charts" exact={true} render={() =>
+                    <div>
+                        <Nav/>
+                        <Charts/>
+                    </div>
+                } />
             </div>
 
 
