@@ -7,7 +7,18 @@ import api from '../api';
 
 function Signin(props) {
 
-    return <label>You need to sign in</label>
+    return (
+    <div>
+      <a className="btn btn-primary btn-lg" href="/auth/google">
+        <i className="fa fa-google"></i>
+        Sign in with Google
+      </a>
+
+      <a className="btn btn-primary btn-lg" href="/auth/github">
+        <i className="fa fa-github"></i>
+        Sign in with GitHub
+      </a>
+    </div>)
 }
 
 

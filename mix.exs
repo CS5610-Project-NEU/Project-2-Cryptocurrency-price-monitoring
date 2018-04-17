@@ -44,7 +44,8 @@ defmodule Coinbase.Mixfile do
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
       {:poison, "~> 3.1"},
-      {:httpoison, "~> 1.0"}
+      {:httpoison, "~> 1.0"},
+      {:oauth2, "~> 0.3"}
     ]
   end
 
