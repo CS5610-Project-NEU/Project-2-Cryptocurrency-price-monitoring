@@ -1,9 +1,8 @@
 import React from 'react';
-import { Collapse,NavItem, NavLink, Button } from 'reactstrap';
+import { Collapse,NavItem, NavLink,  Form, Button, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import api from '../api';
 
-import { Form, Button, FormGroup, Label, Input } from 'reactstrap';
 
 import {Doughnut} from 'react-chartjs-2';
 
@@ -20,7 +19,6 @@ class Dashboard extends React.Component {
             sel_time: "H"
         };
     }
-
 
 
 
