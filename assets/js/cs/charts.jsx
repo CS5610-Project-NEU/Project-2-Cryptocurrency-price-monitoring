@@ -143,7 +143,7 @@ class Charts extends React.Component{
                 let perc = Math.round((diff / start_price) * 10000) / 100 ;
 
                 if (diff > 0){
-                    res =  perc + "%"
+                    res = "+" + perc + "%"
 
                 }else if(diff < 0){
                     res = perc + "%"
