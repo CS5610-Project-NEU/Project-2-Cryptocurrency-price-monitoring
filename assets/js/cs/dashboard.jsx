@@ -160,12 +160,12 @@ class Dashboard extends React.Component {
                 <div className={"col"}>
                     <div class="card border border-dark">
                         <div class="card-header">
-                            Set alert
+                            Subscribe/Cancel Notification, Above or Below Threshold
                         </div>
                         <div class="card-body">
 
                             <FormGroup>
-                                <Label for="set_alert">Subscribe/Cancel Notification, Above or Below Threshold</Label>
+                                <Label for="set_alert">Select Action</Label>
                                 <Input type="select" name="set_alert"
                                        onChange={this.update} value={this.state.set_alert}>
                                     <option key={"above"} value="above">Above</option>
