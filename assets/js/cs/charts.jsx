@@ -64,7 +64,7 @@ class Charts extends React.Component{
         if (this.state.sel_coin === "bitcoin"){
             sel_bitcoin = "nav-link ";
             curr_price = this.props.bitcoin_curr_coinbase;
-            coin_name = "BITCOIN PRICE"
+            coin_name = "BITCOIN PRICE";
             curr_day = this.props.bitcoin_day_coinbase;
             curr_month = this.props.bitcoin_month_coinbase;
             curr_hour = this.props.bitcoin_hour_coinbase;

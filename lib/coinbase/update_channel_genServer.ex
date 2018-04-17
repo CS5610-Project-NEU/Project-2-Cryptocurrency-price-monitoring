@@ -199,7 +199,7 @@ defmodule Coinbase.UpdateChannel do
 #      #
       #      ### cash data
       cash_curr_coinbase: get_price("Cash","coinbase"),
-    
+
       cash_month_coinbase: get_price("Cash","month","coinbase"),
       cash_week_coinbase: get_price("Cash","week","coinbase"),
       cash_day_coinbase: get_price("Cash","day","coinbase"),

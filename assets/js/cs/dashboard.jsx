@@ -3,49 +3,124 @@ import { Collapse,NavItem, NavLink, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import api from '../api';
 
+import { Form, Button, FormGroup, Label, Input } from 'reactstrap';
+
 import {Doughnut} from 'react-chartjs-2';
 
 
 
 
-function Dashboard(props) {
+class Dashboard extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            sel_coin: "bitcoin",
+            sel_time: "H"
+        };
+    }
 
 
-    let data = {
-        datasets: [{
-            data: [10, 20, 30],
-            labels: ['Red', 'Yellow', 'Blue']
-        }],
-
-    };
 
 
-
- return <div class="container-fluid">
-
-     <div className={"row"}>
-         <div className={"col"}>
-
-    <Doughnut
-        data={data}
-        width={100}
-        height={50}/>
-
-         </div>
+    render() {
 
 
-         <div className={"col"}>
+        let bitcoin_curr_coinbase = parseFloat (this.props.bitcoin_curr_coinbase) ;
+        let ethereum_curr_coinbase = parseFloat (this.props.ethereum_curr_coinbase) ;
+        let litcoin_curr_coinbase = parseFloat (this.props.litcoin_curr_coinbase) ;
+        let cash_curr_coinbase = parseFloat (this.props.cash_curr_coinbase);
+        let bitcoin_own = parseFloat(this.props.user_form.bitcoin) ;
+        let ethereum_own = parseFloat(this.props.user_form.ethereum) ;
+        let litcoin_own = parseFloat(this.props.user_form.litcoin);
+        let cash_own = parseFloat(this.props.user_form.cash);
 
-         </div>
 
-     </div>
+        function get_money(curr,own){
+            console.log(curr,own);
+            return Math.round((curr * own) * 100) / 100 ;
+        }
+
+        let data = {
+            labels: [
+                "Bitcoin",
+                "Ethereum",
+                "Litcoin",
+                "Bitcoin Cash",
+            ],
+            datasets: [
+                {
+                    data: [get_money(bitcoin_curr_coinbase , bitcoin_own), get_money(ethereum_curr_coinbase , ethereum_own), get_money(litcoin_curr_coinbase , litcoin_own), get_money(cash_curr_coinbase, cash_own)],
+                    backgroundColor: [
+                        "#f9ca24",
+                        "#eb4d4b",
+                        "#6ab04c",
+                        "#686de0"
+                    ],
+                    hoverBackgroundColor: [
+                        "#ffeaa7",
+                        "#e66767",
+                        "#A3CB38",
+                        "#487eb0"
+                    ]
+                }]
+        };
 
 
- </div>
+        let options = {
+            animation: {
+                animateScale: true
+            }
+        };
 
 
+        return <div class="container-fluid">
+
+            <div className={"row"}>
+                <div className={"col"}>
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            COIN YOU OWN (USD)
+                        </div>
+                        <div class="card-body">
+                            <Doughnut
+                                data={data}
+                                width={70}
+                                height={50}
+                                options={options}/>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className={"col"}>
+
+                    <div class="card">
+                        <div class="card-header">
+                            Buy/Sell Your Coin (USD)
+                        </div>
+                        <div class="card-body">
+                            <Doughnut
+                                data={data}
+                                width={70}
+                                height={50}
+                                options={options}/>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    }
 }
-
 
 
 
