@@ -22,8 +22,8 @@ defmodule Coinbase.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :money, :password_hash, :pw_tries, :pw_last_try])
-    |> validate_required([:name, :email, :money, :password_hash, :pw_tries, :pw_last_try])
+    |> cast(attrs, [:name, :email, :money, :password_hash])
+    |> validate_required([:name, :email, :money, :password_hash])
     |> unique_constraint(:email)
     |> validate_format(:email, ~r/.*?@.*?.com/)
   end

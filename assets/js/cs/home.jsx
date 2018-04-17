@@ -77,92 +77,6 @@ function Home(props) {
         }}
 
 
-
-    let data_hour= {
-
-        datasets: [{
-            label: "My First dataset",
-            data: [{
-                x: '2018-4-12 07:00',
-                y: Math.random() * 100
-            },
-                {
-                    x: '2018-4-13 08:00',
-                    y: Math.random() * 100
-                },
-                {
-                    x: '2018-4-14 09:00',
-                    y: Math.random() * 100
-                },
-                {
-                    x: '2018-4-15 10:00',
-                    y: Math.random() * 100
-                },
-                {
-                    x: '2018-4-16 11:00',
-                    y: Math.random() * 100
-                },
-                {
-                    x: '2018-4-17 12:00',
-                    y: Math.random() * 100
-                },{
-                    x: '2018-4-18 13:00',
-                    y: Math.random() * 100
-                },
-                {
-                    x: '2018-4-19 14:00',
-                    y: Math.random() * 100
-                },
-                {
-                    x: '2018-4-20 15:00',
-                    y: Math.random() * 100
-                },
-                {
-                    x: '2018-4-21 16:00',
-                    y: Math.random() * 100
-                },
-                {
-                    x: '2018-4-22 17:00',
-                    y: Math.random() * 100
-                },
-                {
-                    x: '2018-4-23 18:00',
-                    y: Math.random() * 100
-                },
-            ],
-            borderColor: "#c0392b",
-            fill: false
-        }]
-    };
-
-    let option_hour = {
-
-        scales: {
-            xAxes: [{
-                gridLines: {
-                    color: "rgba(0, 0, 0, 0)"},
-                type: 'time',
-                distribution: 'linear',
-                time: {
-                    unit: 'hour',
-
-                },
-                ticks: {
-                    autoSkip: true,
-                    source: 'data',
-                }
-
-            }],
-
-            yAxes: [{
-                gridLines: {
-                    color: "rgba(0, 0, 0, 0)",
-                }
-            }]
-        },
-        legend: false
-    };
-
  function get_info(Name,curr_price,prices){
 
      return <div>
@@ -189,7 +103,7 @@ function Home(props) {
      </div>
  }
 
- return <div style={{backgroundColor:"#dfe4ea", height:"800px"}}>
+ return <div>
 
      <div className={"container"} style={{position:"relative",top:"100px"}}>
          <div className={"row justify-content-md-center"}>
@@ -264,47 +178,10 @@ function Home(props) {
          </div>
      </div>
      </div>
-
-
-
-
-
-
-
-     {/*<div class="card">*/}
-         {/*<div class="card-body">*/}
-             {/*<h5 class="card-title">bitcoinCash</h5>*/}
-             {/*<Line data={get_datasets(props.bitcoin_day_coinbase,"bitcoinCash","#c0392b")}*/}
-                   {/*width={100}*/}
-                   {/*height={50}*/}
-                   {/*options ={option_hour}*/}
-             {/*/>*/}
-         {/*</div>*/}
-     {/*</div>*/}
-
-
-     {/*<div class="card">*/}
-         {/*<div class="card-body">*/}
-             {/*<h5 class="card-title">bitcoinCash</h5>*/}
-             {/*<Line data={data_hour}*/}
-                   {/*width={100}*/}
-                   {/*height={50}*/}
-                   {/*options ={option_hour}*/}
-             {/*/>*/}
-         {/*</div>*/}
-     {/*</div>*/}
-
-
-
  </div>
 
 
 }
-
-
-
-
-
 
 
 

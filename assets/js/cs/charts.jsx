@@ -247,7 +247,7 @@ class Charts extends React.Component{
         }
 
 
-        return <div style={{backgroundColor:"#dfe4ea", height:"800px"}}>
+        return <div>
             <div className={"container border border-dark"} style={{position:"relative",top:"20px",backgroundColor:"#ffffff"}}>
 
                 <div class="row justify-content-between">

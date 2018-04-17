@@ -67,25 +67,37 @@ class Nav extends React.Component{
 
                         <div className={"row"}>
 
+
                             <div className={"col-3"}>
-
-
                                 <NavItem>
                                     <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink>
                                 </NavItem>
                             </div>
-                            <div className={"col-4"}>
+
+
+                            <div className={"col-3"}>
+
+                                <NavItem>
+                                    <NavLink to="/dashboard" href="#"  className="nav-link">Dashboard</NavLink>
+                                </NavItem>
+                            </div>
+
+
+                            <div className={"col-3"}>
 
 
                                 <NavItem>
                                     <NavLink to="/signin" href="#"  className="nav-link">Sign in</NavLink>
                                 </NavItem>
+
                             </div>
-                            <div className={"col-5"}>
-                        <NavItem>
-                            <Button outline color="secondary">Sign up</Button>{' '}
-                        </NavItem>
+                            <div className={"col-3 border border-light"}>
+
+                                <NavItem>
+                                    <NavLink to="/signup" href="#"  className="nav-link">Sign up</NavLink>
+                                </NavItem>
                             </div>
+
                         </div>
                     </ul>
 

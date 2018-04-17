@@ -12,6 +12,7 @@ defmodule Coinbase.Coins.Coin_alert do
 #    field :coin_id, :id
     belongs_to :user, User
     belongs_to :coin, Coin
+    field :above, :integer
 
     timestamps()
   end
@@ -19,7 +20,7 @@ defmodule Coinbase.Coins.Coin_alert do
   @doc false
   def changeset(coin_alert, attrs) do
     coin_alert
-    |> cast(attrs, [:user_id,:coin_id,:amount])
-    |> validate_required([:user_id,:coin_id,:amount])
+    |> cast(attrs, [:user_id,:coin_id,:amount,:above])
+    |> validate_required([:user_id,:coin_id,:amount,:above])
   end
 end

@@ -11,6 +11,8 @@ import Signin from './signin'
 
 import Charts from './charts'
 
+import Dashboard from './dashboard'
+
 export default function coinprice_init(store) {
     ReactDOM.render(
         <Provider store={store}>
@@ -23,9 +25,11 @@ export default function coinprice_init(store) {
 
 let Coinprice = connect((state) => state)((props) => {
 
+    let height = $(document).height();
+
     return (
         <Router>
-            <div>
+            <div style={{backgroundColor:"#dfe4ea",height:height}}>
                 <Route path="/" exact={true} render={() =>
                     <div>
                          <Nav/>
@@ -46,11 +50,15 @@ let Coinprice = connect((state) => state)((props) => {
                         <Charts/>
                     </div>
                 } />
+
+
+                <Route path="/dashboard" exact={true} render={() =>
+                    <div>
+                        <Nav/>
+                        <Dashboard/>
+                    </div>
+                } />
             </div>
-
-
-
-
         </Router>
     );
 });
