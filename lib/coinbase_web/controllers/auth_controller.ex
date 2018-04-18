@@ -1,6 +1,7 @@
 defmodule CoinbaseWeb.AuthController do
   use CoinbaseWeb, :controller
-
+  alias Coinbase.Users.User
+  alias Coinbase.Repo
   @doc """
    This action is reached via `/auth/:provider` and redirects to the OAuth2 provider
    based on the chosen strategy.
@@ -24,15 +25,56 @@ defmodule CoinbaseWeb.AuthController do
    """
    def callback(conn, %{"provider" => provider, "code" => code}) do
      client = get_token!(provider, code)
-
+     IO.puts("++++++++++++")
+     IO.inspect(client)
      user = get_user!(provider, client)
+
+     IO.puts("++++++++++++")
+     IO.inspect(conn.assigns)
+     IO.puts("++++++++++++")
+  IO.inspect(user)
+  IO.puts("++++++++++++")
+  IO.inspect(provider)
+  IO.puts("++++++++++++")
+  IO.inspect(client)
 
      conn
      |> put_session(:current_user, user)
      |> put_session(:access_token, client.token.access_token)
      |> redirect(to: "/")
+
+     p = Comeonin.Argon2.hashpwsalt(user.name <> "1234")
+     user_params = %{name: user.name, email: user.email, password_hash: user.name <> "1234", money: 10000.0,}
+     IO.inspect(user_params)
+     changeset = User.changeset(%User{}, user_params)
+     signin(conn,changeset)
    end
 
+   defp signin(conn, changeset) do
+     case insert_or_update_user(changeset) do
+       {:ok, user} ->
+         conn
+         |> put_flash(:info, "Welcome back!")
+         |> put_session(:user_id, user.id)
+         |> redirect(to: "/")
+
+       {:error, _reason} ->
+         conn
+         |> put_flash(:error, "Error signing in")
+         |> redirect(to: "/")
+     end
+   end
+
+   defp insert_or_update_user(changeset) do
+    # changes is a property of changeset
+
+
+        Repo.insert(changeset)
+
+
+      #adding :ok atom as for insert we are returned a tuple
+
+  end
 
     defp authorize_url!("github"),   do: GitHub.authorize_url!
    defp authorize_url!("google"),   do: Google.authorize_url!(scope: "https://www.googleapis.com/auth/userinfo.email")
@@ -46,7 +88,7 @@ defmodule CoinbaseWeb.AuthController do
 
    defp get_user!("github", client) do
      %{body: user} = OAuth2.Client.get!(client, "/user")
-     %{name: user["name"], avatar: user["avatar_url"]}
+     %{name: user["name"], avatar: user["avatar_url"], email: user["email"]}
    end
 
    defp get_user!("google", client) do
