@@ -21,6 +21,7 @@ defmodule CoinbaseWeb.Router do
     get "/signin", PageController, :index
     get "/signup", PageController, :index
     get "/charts", PageController, :index
+    get "/users", PageController, :index
     get "/dashboard", PageController, :index
   end
 
@@ -38,7 +39,9 @@ defmodule CoinbaseWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", CoinbaseWeb do
-  #   pipe_through :api
-  # end
+  scope "/api/v1", CoinbaseWeb do
+    pipe_through :api
+    resources "/users", UserController, except: [:new, :edit]
+    post "/token", TokenController, :create
+  end
 end
