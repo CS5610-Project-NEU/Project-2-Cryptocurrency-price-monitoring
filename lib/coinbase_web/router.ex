@@ -21,11 +21,8 @@ defmodule CoinbaseWeb.Router do
     get "/signin", PageController, :index
     get "/signup", PageController, :index
     get "/charts", PageController, :index
-<<<<<<< HEAD
     post "/send", PageController, :send
-=======
     get "/dashboard", PageController, :index
->>>>>>> 359a58371749da87c6c312f880c91eeff8405643
   end
 
   scope "/auth", CoinbaseWeb do
