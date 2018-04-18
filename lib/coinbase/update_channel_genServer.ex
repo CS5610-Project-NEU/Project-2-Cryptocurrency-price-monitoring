@@ -1,13 +1,25 @@
 defmodule Coinbase.UpdateChannel do
   use GenServer
+  use CoinbaseWeb, :controller
   import Coinbase.CoinbaseApi
 
   import Ecto.Query, warn: false
+  import Swoosh.Email
   alias Coinbase.Coins.Coin_alert
   alias Coinbase.Users.User
   alias Coinbase.Coins.Coin
   alias Coinbase.Repo
+  alias Coinbase.SendgridMailer
+  alias CoinbaseWeb.UserEmail
 
+
+  @default_to "vipulsharma018@gmail.com"
+
+  @mailers %{
+    "sendgrid" => SendgridMailer,
+  }
+
+  plug :scrub_params, "email" when action in [:send]
 
   def start_link() do
     GenServer.start_link __MODULE__, %{}
@@ -16,7 +28,7 @@ defmodule Coinbase.UpdateChannel do
   ## SERVER ##
 
   def init(_state) do
-    IO.inspect "hihihihi start"
+    IO.inspect "+++++++++++++In INIT++++++++++++++"
 
 #    bitcoin_curr_gdax = get_price("Bitcoin","gdax")
 #    bitcoin_month_gdax = get_price("Bitcoin","month","gdax")
@@ -110,7 +122,7 @@ defmodule Coinbase.UpdateChannel do
     broadcast state
 
 
-    schedule_timer(1_000) # 1 sec timer
+    schedule_timer(5_000) # 1 sec timer
     {:ok, state}
   end
 
@@ -118,7 +130,7 @@ defmodule Coinbase.UpdateChannel do
   def handle_info(:update, interval) do
      items =  Repo.all(Coin_alert)
 
-     IO.inspect items
+     # IO.inspect items
 
 
 #    bitcoin_curr_gdax = get_price("Bitcoin","gdax")
@@ -213,11 +225,13 @@ defmodule Coinbase.UpdateChannel do
 
 
     }
-
+    IO.inspect "+++++++++++calling FUNCTION++++++++++++++++"
+    send_mail()
+    IO.inspect "+++++++++++function CALLED++++++++++++++++"
     broadcast state
    # IO.inspect state
 
-    schedule_timer(1_000)
+    schedule_timer(5_000)
     {:noreply, ""}
   end
 
@@ -225,10 +239,22 @@ defmodule Coinbase.UpdateChannel do
     Process.send_after self(), :update, interval
   end
 
+  def send_mail() do
+    to ="vipulsharma018@gmail.com"
+    UserEmail.welcome(to)
+    |> SendgridMailer.deliver
+    |> case do
+      {:ok, _result} ->
+        IO.inspect("Email sent successfully")
+      {:error, _reason} ->
+        IO.inspect("There was an error while sending the email")
+    end
+  end
+
 
   defp broadcast(state) do
 
-    IO.inspect "tick tock... tick tock"
+    IO.inspect "+++++++++++In BROADCAST++++++++++++++++"
 
 
     CoinbaseWeb.Endpoint.broadcast! "rooms:lobby", "new_state", state
@@ -238,4 +264,3 @@ defmodule Coinbase.UpdateChannel do
 
 
 end
-
