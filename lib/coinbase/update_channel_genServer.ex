@@ -2,6 +2,12 @@ defmodule Coinbase.UpdateChannel do
   use GenServer
   import Coinbase.CoinbaseApi
 
+  import Ecto.Query, warn: false
+  alias Coinbase.Coins.Coin_alert
+  alias Coinbase.Users.User
+  alias Coinbase.Coins.Coin
+  alias Coinbase.Repo
+
 
   def start_link() do
     GenServer.start_link __MODULE__, %{}
@@ -110,6 +116,10 @@ defmodule Coinbase.UpdateChannel do
 
 
   def handle_info(:update, interval) do
+     items =  Repo.all(Coin_alert)
+
+     IO.inspect items
+
 
 #    bitcoin_curr_gdax = get_price("Bitcoin","gdax")
 #    bitcoin_month_gdax = get_price("Bitcoin","month","gdax")
@@ -147,6 +157,7 @@ defmodule Coinbase.UpdateChannel do
     state = %{
       ### bitcoin data
       bitcoin_curr_coinbase: get_price("Bitcoin","coinbase"),
+
       bitcoin_month_coinbase: get_price("Bitcoin","month","coinbase"),
       bitcoin_week_coinbase: get_price("Bitcoin","week","coinbase"),
       bitcoin_day_coinbase: get_price("Bitcoin","day","coinbase"),
@@ -160,6 +171,7 @@ defmodule Coinbase.UpdateChannel do
       #
       #      ### ethereum data
       ethereum_curr_coinbase: get_price("Ethereum","coinbase"),
+
       ethereum_month_coinbase: get_price("Ethereum","month","coinbase"),
       ethereum_week_coinbase: get_price("Ethereum","week","coinbase"),
       ethereum_day_coinbase: get_price("Ethereum","day","coinbase"),
@@ -173,6 +185,7 @@ defmodule Coinbase.UpdateChannel do
       #
       #      ### litcoin data
       litcoin_curr_coinbase: get_price("Litcoin","coinbase"),
+
       litcoin_month_coinbase: get_price("Litcoin","month","coinbase"),
       litcoin_week_coinbase: get_price("Litcoin","week","coinbase"),
       litcoin_day_coinbase: get_price("Litcoin","day","coinbase"),
@@ -186,6 +199,7 @@ defmodule Coinbase.UpdateChannel do
 #      #
       #      ### cash data
       cash_curr_coinbase: get_price("Cash","coinbase"),
+
       cash_month_coinbase: get_price("Cash","month","coinbase"),
       cash_week_coinbase: get_price("Cash","week","coinbase"),
       cash_day_coinbase: get_price("Cash","day","coinbase"),

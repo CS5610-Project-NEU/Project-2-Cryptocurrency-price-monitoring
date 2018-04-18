@@ -26,8 +26,41 @@ import socket from "./socket"
  *
 */
 
+let default_user_form = {
+    user_id: "1",
+    username: "alice",
+    email: "alice@a.com",
+    money: "10000",
+    bitcoin: "100",
+    litcoin: "200",
+    ethereum: "0",
+    cash: "1000",
+    bitcoin_alert_above : "8000",
+    litcoin_alert_above : "100",
+    ethereum_alert_below : "1000",
+    cash_alert_below : "500",
 
 
+};
+
+
+
+function user_form(state = default_user_form, action){
+
+    switch (action.type) {
+        case '':
+            return state;
+        default:
+            return state;
+    }
+
+}
+
+
+
+
+
+///////////////////////  coin related states
 function bitcoin_curr_coinbase(state = [], action) {
     switch (action.type) {
         case 'UPDATE_ALL':
@@ -265,6 +298,7 @@ function root_reducer(state0, action) {
     // {posts: posts, users: users, form: form}
     let reducer = combineReducers(
         {
+            user_form,
             bitcoin_curr_coinbase,bitcoin_month_coinbase,bitcoin_week_coinbase,bitcoin_day_coinbase,bitcoin_hour_coinbase,bitcoin_year_coinbase,
             ethereum_curr_coinbase,ethereum_month_coinbase,ethereum_week_coinbase,ethereum_day_coinbase,ethereum_hour_coinbase,ethereum_year_coinbase,
             litcoin_curr_coinbase,litcoin_month_coinbase,litcoin_week_coinbase,litcoin_day_coinbase,litcoin_hour_coinbase,litcoin_year_coinbase,
