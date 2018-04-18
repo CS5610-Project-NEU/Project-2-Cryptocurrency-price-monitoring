@@ -1,20 +1,3 @@
-<div class="jumbotron">
-  <%= form_for @conn, page_path(@conn, :send), [as: :email], fn f -> %>
-
-    <div class="form-group">
-      <%= label f, :to, "Send an email to:" %>
-      <%= text_input f, :to, class: "form-control", placeholder: "default: recipient@exampleapp.swoosh" %>
-    </div>
-
-    <div class="form-group">
-      <%= label f, :provider, "With the following provider:" %>
-      <%= select f, :provider, ~w(local mailgun postmark sendgrid smtp), class: "form-control" %>
-    </div>
-
-    <%= submit "Send", class: "btn btn-lg btn-success" %>
-  <% end %>
-</div>
-
 <div id="root">
   <p>React app loading</p>
 </div>
