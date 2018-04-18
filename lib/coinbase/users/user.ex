@@ -22,12 +22,12 @@ defmodule Coinbase.Users.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:name, :email, :money, :password_confirmation, :password])
-    |> validate_required([:name, :email, :money, :password_hash])
     |> unique_constraint(:email)
     |> validate_confirmation(:password)
     |> validate_password(:password)
     |> put_pass_hash()
     |> validate_format(:email, ~r/.*?@.*?.com/)
+    |> validate_required([:name, :email, :money, :password_hash])
   end
   def validate_password(changeset, field, options \\ []) do
         validate_change(changeset, field, fn _, password ->
