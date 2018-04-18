@@ -20,6 +20,7 @@ defmodule CoinbaseWeb.Router do
     get "/", PageController, :index
     get "/signin", PageController, :index
     get "/charts", PageController, :index
+    post "/send", PageController, :send
   end
 
   scope "/auth", CoinbaseWeb do
@@ -33,6 +34,14 @@ defmodule CoinbaseWeb.Router do
 
   defp assign_current_user(conn, _) do
     assign(conn, :current_user, get_session(conn, :current_user))
+  end
+
+  if Mix.env == :dev do
+    scope "/dev" do
+      pipe_through [:browser]
+
+      forward "/mailbox", Plug.Swoosh.MailboxPreview, [base_path: "/dev/mailbox"]
+    end
   end
 
   # Other scopes may use custom stacks.
