@@ -15,9 +15,29 @@ class Dashboard extends React.Component {
         super(props);
 
         this.state = {
-            sel_coin: "bitcoin",
-            sel_time: "H"
+            sell_buy: "sell",
+            sell_buy_coin: "bitcoin",
+            sell_buy_amount: 0,
+            set_alert: "above",
+            set_alert_coin: "bitcoin",
+            set_alert_amount: 0,
         };
+
+        this.update = this.update.bind(this);
+    }
+
+
+    update(ev) {
+        let tgt = $(ev.target);
+
+
+        let data = {};
+        data[tgt.attr('name')] = tgt.val();
+
+        this.setState(data);
+
+        console.log(this.state)
+
     }
 
 
@@ -36,7 +56,6 @@ class Dashboard extends React.Component {
 
 
         function get_money(curr,own){
-            console.log(curr,own);
             return Math.round((curr * own) * 100) / 100 ;
         }
 
@@ -73,13 +92,16 @@ class Dashboard extends React.Component {
         };
 
 
+
+        let coins = [<option value="bitcoin" key={"bitcoin"}>Bitcoin</option>,<option key={"ethereum"} value="ethereum">Ethereum</option>,<option key={"litcoin"} value="litcoin">Litcoin</option>,<option key="cash" value="cash">Bitcoin Cash</option>];
+
         return <div class="container-fluid">
 
             <div className={"row"}>
                 <div className={"col"}>
 
 
-                    <div class="card">
+                    <div class="card border border-dark">
                         <div class="card-header">
                             COIN YOU OWN (USD)
                         </div>
@@ -87,7 +109,7 @@ class Dashboard extends React.Component {
                             <Doughnut
                                 data={data}
                                 width={70}
-                                height={50}
+                                height={39}
                                 options={options}/>
                         </div>
                     </div>
@@ -96,23 +118,102 @@ class Dashboard extends React.Component {
 
                 <div className={"col"}>
 
-                    <div class="card">
+                    <div class="card border border-dark">
                         <div class="card-header">
                             Buy/Sell Your Coin (USD)
                         </div>
                         <div class="card-body">
-                            <Doughnut
-                                data={data}
-                                width={70}
-                                height={50}
-                                options={options}/>
+
+                                <FormGroup>
+                                    <Label for="sell_buy">Sell or Buy?</Label>
+                                    <Input type="select" name="sell_buy"
+                                           onChange={this.update} value={this.state.sell_buy}>
+                                        <option key={"sell"} value="sell">Sell</option>
+                                        <option key={"buy"} value="buy">Buy</option>
+                                    </Input>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label for="sell_buy_coin">Choose a Coin</Label>
+                                    <Input type="select" name="sell_buy_coin"
+                                           onChange={this.update} value={this.state.sell_buy_coin}>
+                                        { coins }
+                                    </Input>
+                                </FormGroup>
+
+                                <FormGroup>
+                                    <Label for="sell_buy_amount">Amount</Label>
+                                    <Input type="text" pattern="[0-9]*" name="sell_buy_amount"
+                                           onChange={this.update} value={this.state.sell_buy_amount} />
+
+                                </FormGroup>
+
+
+                                <Button >Submit</Button>
+
                         </div>
                     </div>
 
                 </div>
 
             </div>
+            <div className={"row"}>
+                <div className={"col"}>
+                    <div class="card border border-dark">
+                        <div class="card-header">
+                            Subscribe/Cancel Notification, Above or Below Threshold
+                        </div>
+                        <div class="card-body">
 
+                            <FormGroup>
+                                <Label for="set_alert">Select Action</Label>
+                                <Input type="select" name="set_alert"
+                                       onChange={this.update} value={this.state.set_alert}>
+                                    <option key={"above"} value="above">Above</option>
+                                    <option key={"below"} value="below">Below</option>
+                                    <option key={"cancel"} value="cancel">Cancel</option>
+                                </Input>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="set_alert_coin">Choose a Coin</Label>
+                                <Input type="select" name="set_alert_coin"
+                                       onChange={this.update} value={this.state.set_alert_coin}>
+                                    { coins }
+                                </Input>
+                            </FormGroup>
+
+                            <FormGroup>
+                                <Label for="set_alert_amount">Threshold</Label>
+                                <Input type="text" pattern="[0-9]*" name="set_alert_amount"
+                                       onChange={this.update} value={this.state.set_alert_amount} />
+
+                            </FormGroup>
+
+
+                            <Button >Submit</Button>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div className={"col"}>
+
+
+                    <div class="card border border-dark">
+                        <div class="card-header">
+                            General Information
+                        </div>
+                        <div class="card-body">
+                            <h2></h2>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 

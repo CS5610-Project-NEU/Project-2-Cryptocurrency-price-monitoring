@@ -20,7 +20,7 @@ defmodule Coinbase.Mixfile do
   def application do
     [
       mod: {Coinbase.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :swoosh, :phoenix_swoosh]
     ]
   end
 
@@ -41,11 +41,10 @@ defmodule Coinbase.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:comeonin, "~> 4.0"},
-      {:argon2_elixir, "~> 1.2"},
-      {:poison, "~> 3.1"},
-      {:httpoison, "~> 1.0"},
-      {:oauth2, "~> 0.3"}
+      {:exrm, "~> 1.0"},
+      {:phoenix_swoosh, "~> 0.2.0"},
+      {:oauth2, "~> 0.9.2"},
+      {:httpoison, "~> 1.1"}
     ]
   end
 

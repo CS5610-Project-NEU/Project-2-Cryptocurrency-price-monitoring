@@ -35,10 +35,10 @@ let default_user_form = {
     litcoin: "200",
     ethereum: "0",
     cash: "1000",
-    bitcoin_alert : "8000",
-    litcoin_alert : "100",
-    ethereum_alert : "1000",
-    cash_alert : "500",
+    bitcoin_alert_above : "8000",
+    litcoin_alert_above : "100",
+    ethereum_alert_below : "1000",
+    cash_alert_below : "500",
 
 
 };
