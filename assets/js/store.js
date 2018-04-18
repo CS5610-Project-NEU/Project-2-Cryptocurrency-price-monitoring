@@ -291,6 +291,90 @@ function cash_year_coinbase(state = [], action) {
 }
 
 
+//////// user FormGroup
+
+function users(state = [], action) {
+  switch (action.type) {
+ case 'USERS_LIST':
+   return [...action.users];
+ case 'ADD_USER':
+   return [action.user, ...state];
+   case 'DELETE_USER':
+     return state.filter(user => user.id != action.id);
+ default:
+   return state;
+ }
+}
+
+let empty_user_form = {
+  email: "",
+  name: "",
+  password: "",
+  password_confirmation: "",
+  money: ""
+};
+
+function form(state = empty_user_form, action) {
+  switch (action.type) {
+    case 'UPDATE_FORM':
+      return Object.assign({}, state, action.data);
+    case 'CLEAR_FORM':
+      return empty_user_form;
+    default:
+      return state;
+  }
+}
+
+let default_user_errors = {
+  email: [""],
+  name: [""],
+  password: [""],
+  password_hash:[""],
+  password_confirmation: [""],
+  money: "",
+  signin: "",
+};
+
+
+function user_errors(state = default_user_errors, action) {
+  switch (action.type) {
+   case 'USER_FORM_ERROR':
+      return Object.assign({}, default_user_errors, action.errors);
+  case 'CLEAR_USER_ERROR':
+    return default_user_errors;
+   default:
+     return state;
+ }
+}
+
+function token(state = null, action) {
+  switch (action.type) {
+    case 'SET_TOKEN':
+      return action.token;
+    case 'REMOVE_TOKEN':
+      return null;
+    default:
+      return state;
+  }
+}
+
+
+let empty_signin = {
+  email: "",
+  pass: "",
+};
+
+function signin(state = empty_signin, action) {
+  switch (action.type) {
+    case 'UPDATE_SIGNIN_FORM':
+      return Object.assign({}, state, action.data);
+    case 'SIGNIN':
+      return empty_signin;
+    default:
+      return state;
+  }
+}
+
 
 function root_reducer(state0, action) {
    /// console.log("reducer", action);
@@ -298,7 +382,7 @@ function root_reducer(state0, action) {
     // {posts: posts, users: users, form: form}
     let reducer = combineReducers(
         {
-            user_form,
+            user_form,signin,token,user_errors,form,users,
             bitcoin_curr_coinbase,bitcoin_month_coinbase,bitcoin_week_coinbase,bitcoin_day_coinbase,bitcoin_hour_coinbase,bitcoin_year_coinbase,
             ethereum_curr_coinbase,ethereum_month_coinbase,ethereum_week_coinbase,ethereum_day_coinbase,ethereum_hour_coinbase,ethereum_year_coinbase,
             litcoin_curr_coinbase,litcoin_month_coinbase,litcoin_week_coinbase,litcoin_day_coinbase,litcoin_hour_coinbase,litcoin_year_coinbase,
