@@ -41,7 +41,7 @@ defmodule Coinbase.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:exrm, "~> 1.0"},
+     # {:exrm, "~> 1.0"},
       {:phoenix_swoosh, "~> 0.2.0"},
       {:oauth2, "~> 0.9.2"},
       {:httpoison, "~> 1.1"},
