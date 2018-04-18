@@ -101,4 +101,12 @@ defmodule Coinbase.Users do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
+
+  def get_and_auth_user(email, pass) do
+    user = Repo.one(from u in User, where: u.email == ^email)
+    case Comeonin.Argon2.check_pass(user, pass) do
+      {:ok, user} -> {:ok, user}
+      _else -> {:error, :not_found}
+    end
+  end
 end

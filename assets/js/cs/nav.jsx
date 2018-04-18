@@ -7,116 +7,83 @@ import api from '../api';
 
 
 
-class Nav extends React.Component{
+let Session = connect(({token}) => {return {token};})((props) => {
+  function remove_token(){
+    let act = {
+      type: 'REMOVE_TOKEN'
+    };
+    props.prop.dispatch(act);
+  }
 
-    constructor(props) {
-        super(props);
+  return <div>
+    <span className="links p-blue inline1" >Logged in as { props.token.user_name } | </span>
+    <NavLink to="/" href="#" className="nav-link links inline1" onClick={remove_token}>Logout</NavLink> </div>;
+});
 
-        this.toggleNavbar = this.toggleNavbar.bind(this);
-        this.state = {
-            collapsed: true
-        };
-    }
+function Nav(props) {
+  let session_info;
 
-    toggleNavbar() {
-        this.setState({
-            collapsed: !this.state.collapsed
-        });
-    }
+  if (props.token) {
+    session_info = <Session token={props.token} prop={props} />;
+  }
+  else {
 
-    render () {
+    session_info =
+    <div>
+    <ul className="navbar-nav mr-auto">
+      <NavItem>
+        <NavLink to="/signin" href="#" className="nav-link links" onClick={clearuserdata}>Sign in</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink to="/signup" href="#" className="nav-link links" onClick={clearuserdata}>Sign Up</NavLink>
+      </NavItem>
+      </ul></div>;
+  }
+  function clearuserdata() {
+    let act = {
+      type: 'CLEAR_FORM',
+    };
+    props.dispatch(act);
+    let act1 = {
+      type: 'CLEAR_USER_ERROR',
+    };
+    props.dispatch(act1);
+    let act2 = {
+      type: 'CLEAR_LOGIN',
+    };
+    props.dispatch(act2);
+  }
 
-        return(
+  function cleardata() {
+    let act = {
+      type: 'CLEAR_TASK_ERROR',
+    };
+    props.dispatch(act);
+  }
 
-            <div class="">
-                <Collapse isOpen={!this.state.collapsed}>
-                    <div class="bg-dark p-4">
-                        <h4 class="text-white">Welcome name</h4>
-                        <span class="text-muted">Your balance is 0000</span>
-                    </div>
-                </Collapse>
+  return (
+    <nav className="navbar navbar-dark bg-dark navbar-expand">
+      <span className="navbar-brand head1">
+        CoinBase
+      </span>
+      <ul className="navbar-nav mr-auto">
+        <NavItem>
+           <NavLink to="/dashboard" href="#"  className="nav-link">Dashboard</NavLink>
+        </NavItem>
+        <NavItem>
+          {props.token? <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink> : ""}
+        </NavItem>
 
-                <nav class="navbar navbar-dark bg-dark ">
-                    <div className={"row"}>
-
-                        <div id={"toggle-btn"} className={"col-3"} style={{position:"relative",top:"5px"}}>
-                        <button class="navbar-toggler" type="button" onClick={this.toggleNavbar}>
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        </div>
-
-                    <div className={"col-4"}>
-
-
-
-                    <NavLink to="/" href="#"  className="nav-link">
-
-                              <span className="navbar-brand">
-                              <img src="/images/coin.svg" width="30" height="30" class="d-inline-block align-top" alt=""></img>
-                            WebCoin
-                                </span>
-                    </NavLink>
-
-
-
-                    </div>
-                    </div>
-
-
-                    <ul className="navbar-nav ">
-
-                        <div className={"row"}>
-
-                            <div className={"col-3"}>
-
-                                <NavItem>
-                                    <NavLink to="/dashboard" href="#"  className="nav-link">Dashboard</NavLink>
-                                </NavItem>
-                            </div>
-
-
-                            <div className={"col-2"}>
-                                <NavItem>
-                                    <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink>
-                                </NavItem>
-                            </div>
-
-
-
-                            <div className={"col-3"}>
-
-
-                                <NavItem>
-                                    <NavLink to="/signin" href="#"  className="nav-link">Sign in</NavLink>
-                                </NavItem>
-
-                            </div>
-                            <div className={"col-4 border border-light"}>
-
-                            <NavItem>
-                                <NavLink to="/signup" href="#" className="nav-link">Sign Up</NavLink>
-                            </NavItem>
-                            </div>
-
-                        </div>
-                    </ul>
-
-
-                </nav>
-            </div>
-        )
-
-
-    }
-
-
+      </ul>
+      { session_info }
+    </nav>
+  );
 }
-
 
 function state2props(state) {
-    return {
-        token: state.token,
-    };
+  return {
+    token: state.token
+  };
 }
 
-export default connect(state2props)(Nav);
+export default connect(state2props,null,null,{pure: false})(Nav);
