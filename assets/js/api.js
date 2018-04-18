@@ -22,6 +22,7 @@ register_user(data) {
       });
     },
     error: (resp) => {
+      console.log(resp);
       store.dispatch({
         type: 'USER_FORM_ERROR',
         errors: resp.responseJSON.errors,
