@@ -26,12 +26,26 @@ class Nav extends React.Component{
     render () {
 
 
+
         let Session = connect(({token}) => {return {token};})((props) => {
             function remove_token(){
                 let act = {
-                    type: 'REMOVE_TOKEN'
+                    type: 'CLEAR_FORM',
                 };
                 props.prop.dispatch(act);
+                let act1 = {
+                    type: 'CLEAR_USER_ERROR',
+                };
+                props.prop.dispatch(act1);
+                let act2 = {
+                    type: 'CLEAR_LOGIN',
+                };
+                props.prop.dispatch(act2);
+
+                let act3 = {
+                    type: 'REMOVE_TOKEN'
+                };
+                props.prop.dispatch(act3);
             }
 
             return <div>

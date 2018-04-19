@@ -377,6 +377,9 @@ function signin(state = empty_signin, action) {
       return Object.assign({}, state, action.data);
     case 'SIGNIN':
       return empty_signin;
+
+      case 'CLEAR_LOGIN':
+      return  empty_signin;
     default:
       return state;
   }

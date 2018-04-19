@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9c9b5d6-5e9a-4236-8b31-c30133e15a69" name="Default" comment="Sending email done">
+    <list default="true" id="a9c9b5d6-5e9a-4236-8b31-c30133e15a69" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/assets/js/cs/home.jsx" afterPath="$PROJECT_DIR$/assets/js/cs/home.jsx" />
-      <change beforePath="$PROJECT_DIR$/lib/coinbase/send_email.ex" afterPath="$PROJECT_DIR$/lib/coinbase/send_email.ex" />
-      <change beforePath="$PROJECT_DIR$/priv/repo/seeds.exs" afterPath="$PROJECT_DIR$/priv/repo/seeds.exs" />
+      <change beforePath="$PROJECT_DIR$/assets/js/cs/nav.jsx" afterPath="$PROJECT_DIR$/assets/js/cs/nav.jsx" />
+      <change beforePath="$PROJECT_DIR$/assets/js/store.js" afterPath="$PROJECT_DIR$/assets/js/store.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +21,8 @@
       <file leaf-file-name="home.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/cs/home.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="115" column="5" lean-forward="false" selection-start-line="115" selection-start-column="5" selection-end-line="115" selection-end-column="5" />
+            <state relative-caret-position="216">
+              <caret line="174" column="14" lean-forward="false" selection-start-line="174" selection-start-column="14" selection-end-line="174" selection-end-column="14" />
               <folding>
                 <element signature="e#1#27#0" expanded="true" />
               </folding>
@@ -34,8 +33,28 @@
       <file leaf-file-name="send_email.ex" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/coinbase/send_email.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
+            <state relative-caret-position="882">
               <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="store.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/store.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="369" column="12" lean-forward="false" selection-start-line="369" selection-start-column="12" selection-end-line="369" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/cs/nav.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="271">
+              <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -44,8 +63,8 @@
       <file leaf-file-name="seeds.exs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/priv/repo/seeds.exs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="31" column="53" lean-forward="false" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
+            <state relative-caret-position="252">
+              <caret line="26" column="49" lean-forward="true" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -75,8 +94,9 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CLEAR_LOGIN</find>
       <find>Redirect</find>
+      <find>CLEAR_FORM</find>
+      <find>CLEAR_LOGIN</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -92,16 +112,16 @@
         <option value="$PROJECT_DIR$/assets/js/cs/charts.jsx" />
         <option value="$PROJECT_DIR$/config/config.exs" />
         <option value="$PROJECT_DIR$/lib/coinbase_web/views/token_view.ex" />
-        <option value="$PROJECT_DIR$/assets/js/store.js" />
         <option value="$PROJECT_DIR$/lib/coinbase/application.ex" />
         <option value="$PROJECT_DIR$/assets/js/cs/coinprice.jsx" />
-        <option value="$PROJECT_DIR$/assets/js/cs/nav.jsx" />
         <option value="$PROJECT_DIR$/assets/js/app.js" />
         <option value="$PROJECT_DIR$/lib/coinbase/update_channel_genServer.ex" />
         <option value="$PROJECT_DIR$/lib/coinbase_web/emails/user_email.ex" />
-        <option value="$PROJECT_DIR$/assets/js/cs/home.jsx" />
         <option value="$PROJECT_DIR$/lib/coinbase/send_email.ex" />
         <option value="$PROJECT_DIR$/priv/repo/seeds.exs" />
+        <option value="$PROJECT_DIR$/assets/js/cs/home.jsx" />
+        <option value="$PROJECT_DIR$/assets/js/cs/nav.jsx" />
+        <option value="$PROJECT_DIR$/assets/js/store.js" />
       </list>
     </option>
   </component>
@@ -377,11 +397,25 @@
       <option name="project" value="LOCAL" />
       <updated>1524108047397</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Sending email done">
+      <created>1524109249112</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1524109249112</updated>
+    </task>
+    <task id="LOCAL-00013" summary="remove btn">
+      <created>1524109680671</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1524109680671</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43171000" />
+    <option name="totallyTimeSpent" value="44598000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1215" height="804" extended-state="6" />
@@ -448,7 +482,8 @@
     <MESSAGE value="Dashboard almost done" />
     <MESSAGE value="Nav bar and sending email DB" />
     <MESSAGE value="Sending email done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sending email done" />
+    <MESSAGE value="remove btn" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove btn" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -694,24 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="289" column="5" lean-forward="false" selection-start-line="289" selection-start-column="5" selection-end-line="289" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/cs/nav.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#26#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/coinbase/sendgrid_mailer.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -816,14 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/cs/coinprice.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -832,10 +841,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/cs/home.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="115" column="5" lean-forward="false" selection-start-line="115" selection-start-column="5" selection-end-line="115" selection-end-column="5" />
+        <state relative-caret-position="216">
+          <caret line="174" column="14" lean-forward="false" selection-start-line="174" selection-start-column="14" selection-end-line="174" selection-end-column="14" />
           <folding>
             <element signature="e#1#27#0" expanded="true" />
           </folding>
@@ -844,16 +861,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/coinbase/send_email.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
+        <state relative-caret-position="882">
           <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/cs/nav.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="369" column="12" lean-forward="false" selection-start-line="369" selection-start-column="12" selection-end-line="369" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/priv/repo/seeds.exs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="31" column="53" lean-forward="false" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
+        <state relative-caret-position="252">
+          <caret line="26" column="49" lean-forward="true" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="73" />
           <folding />
         </state>
       </provider>
