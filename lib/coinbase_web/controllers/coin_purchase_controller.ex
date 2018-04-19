@@ -15,7 +15,6 @@ defmodule CoinbaseWeb.Coin_purchaseController do
     with {:ok, %Coin_purchase{} = coin_purchase} <- Coins.create_coin_purchase(coin_purchase_params) do
       conn
       |> put_status(:created)
-#      |> put_resp_header("location", coin_purchase_path(conn, :show, coin_purchase))
       |> render("show.json", coin_purchase: coin_purchase)
     end
   end
@@ -23,6 +22,23 @@ defmodule CoinbaseWeb.Coin_purchaseController do
   def show(conn, %{"id" => id}) do
     coin_purchase = Coins.get_coin_purchase!(id)
     render(conn, "show.json", coin_purchase: coin_purchase)
+  end
+
+  def create(conn, %{"coin_trans" => coin_trans}) do
+    coin_purchase = Coins.get_coin_purchase(coin_trans["user_id"], coin_trans["coin_id"])
+    if coin_purchase do
+      with {:ok, %Coin_purchase{} = coin_purchase} <- Coins.update_coin_amount(coin_purchase, coin_trans["amount"]) do
+        conn
+        |> put_status(:created)
+        |> render("show.json", coin_purchase: coin_purchase)
+      end
+    else
+      with {:ok, %Coin_purchase{} = coin_purchase} <- Coins.create_coin_purchase(coin_trans) do
+        conn
+        |> put_status(:created)
+        |> render("show.json", coin_purchase: coin_purchase)
+      end
+    end
   end
 
   def update(conn, %{"id" => id, "coin_purchase" => coin_purchase_params}) do

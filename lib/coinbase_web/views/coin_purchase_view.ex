@@ -12,6 +12,7 @@ defmodule CoinbaseWeb.Coin_purchaseView do
 
   def render("coin_purchase.json", %{coin_purchase: coin_purchase}) do
     %{id: coin_purchase.id,
-      amount: coin_purchase.amount}
+      amount: coin_purchase.amount,
+    user_id: coin_purchase.user_id}
   end
 end

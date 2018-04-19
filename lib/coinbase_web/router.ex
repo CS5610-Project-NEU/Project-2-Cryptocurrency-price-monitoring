@@ -51,6 +51,9 @@ defmodule CoinbaseWeb.Router do
   scope "/api/v1", CoinbaseWeb do
     pipe_through :api
     resources "/users", UserController, except: [:new, :edit]
+    resources "/coins", CoinController, except: [:new, :edit]
+    resources "/purs", Coin_purchaseController, except: [:new, :edit]
+    resources "/alerts", Coin_alertController, except: [:new, :edit]
     post "/token", TokenController, :create
   end
 end
