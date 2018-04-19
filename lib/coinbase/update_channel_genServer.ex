@@ -217,7 +217,7 @@ defmodule Coinbase.UpdateChannel do
 
     }
     IO.inspect "+++++++++++calling FUNCTION++++++++++++++++"
-   # send_mail()
+   send_mail("vipulsharma018@gmail.com","Your custom alert here!")
     IO.inspect "+++++++++++function CALLED++++++++++++++++"
     broadcast state
    # IO.inspect state
@@ -230,9 +230,8 @@ defmodule Coinbase.UpdateChannel do
     Process.send_after self(), :update, interval
   end
 
-  def send_mail() do
-    to ="vipulsharma018@gmail.com"
-    UserEmail.welcome(to)
+  def send_mail(email_address,body) do
+    UserEmail.welcome(email_address,body)
     |> SendgridMailer.deliver
     |> case do
       {:ok, _result} ->
