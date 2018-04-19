@@ -4,6 +4,9 @@ defmodule CoinbaseWeb.Coin_purchaseController do
   alias Coinbase.Coins
   alias Coinbase.Coins.Coin_purchase
 
+  alias Coinbase.Users
+  alias Coinbase.Users.User
+
   action_fallback CoinbaseWeb.FallbackController
 
   def index(conn, _params) do
@@ -26,6 +29,14 @@ defmodule CoinbaseWeb.Coin_purchaseController do
 
   def create(conn, %{"coin_trans" => coin_trans}) do
     coin_purchase = Coins.get_coin_purchase(coin_trans["user_id"], coin_trans["coin_id"])
+    user = Users.get_user!(coin_trans["user_id"])
+    amount = coin_trans["amount"]
+
+    new_money = user.money - (coin_trans["amount"] * coin_trans["coin_price"])
+
+
+    Users.update_user(user,%{money: new_money})
+
     if coin_purchase do
       with {:ok, %Coin_purchase{} = coin_purchase} <- Coins.update_coin_amount(coin_purchase, coin_trans["amount"]) do
         conn
@@ -43,6 +54,7 @@ defmodule CoinbaseWeb.Coin_purchaseController do
 
   def update(conn, %{"id" => id, "coin_purchase" => coin_purchase_params}) do
     coin_purchase = Coins.get_coin_purchase!(id)
+
 
     with {:ok, %Coin_purchase{} = coin_purchase} <- Coins.update_coin_purchase(coin_purchase, coin_purchase_params) do
       render(conn, "show.json", coin_purchase: coin_purchase)

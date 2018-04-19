@@ -82,17 +82,17 @@ class Nav extends React.Component{
         return(
 
             <div>
-
+                {this.props.token?
                 <Collapse isOpen={!this.state.collapsed}>
                     <div className="bg-dark p-4">
-                    Welcome { window.localStorage.getItem("user_id") ? window.localStorage.getItem("user_id") : window.localStorage.getItem("googleuser_id") }
+                    {/*Welcome { window.localStorage.getItem("user_id") ? window.localStorage.getItem("user_id") : window.localStorage.getItem("googleuser_id") }*/}
 
-                        <h4 className="text-white">Welcome {this.props.user_form.username}</h4>
-                        <span className="text-muted">Your balance is ${this.props.user_form.money}</span>
+                        <h4 className="text-white">Welcome {this.props.token.user_name}</h4>
+                        <span className="text-muted">Your balance is ${this.props.token.money}</span>
                     </div>
                 </Collapse>
 
-
+                    : ""}
                 <nav className="navbar navbar-dark bg-dark">
 
                     {this.props.token?
@@ -122,7 +122,7 @@ class Nav extends React.Component{
                         <div style={{width: "80px"}}>
 
                     <NavItem>
-                      {(this.props.token || tok || tok1)?  <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink> : ""}
+                        <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink>
                     </NavItem>
                         </div>
                         <div style={{width: "80px"}}>

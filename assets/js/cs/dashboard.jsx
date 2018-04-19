@@ -13,19 +13,96 @@ class Dashboard extends React.Component {
 
     constructor(props) {
         super(props);
-        api.get_coins();
+
 
         this.state = {
             sell_buy: "sell",
-            sell_buy_coin: 1,
+            sell_buy_coin: parseInt(props.coins_list[0].id),
             sell_buy_amount: 0,
             set_alert: "above",
-            set_alert_coin: 1,
+            set_alert_coin: parseInt(props.coins_list[0].id),
             set_alert_amount: 0,
+            //user_amounts: user_amounts,
+
         };
 
         this.update = this.update.bind(this);
+        this.get_user_amounts = this.get_user_amounts.bind(this)
+        this.get_curr_prices = this.get_curr_prices.bind(this)
     }
+    
+
+    get_user_amounts(){
+
+
+        console.log("coin list ",this.props.coins_list); // key -> id .... name -> coin name list
+        // user has list of coin name -> coin name .... amount ->  list
+
+
+        console.log(this.props.coins_list.length);
+
+
+
+        console.log("own coin list ",this.props.coins);
+
+        let user_amounts = {};
+        for (let i = 0; i < this.props.coins_list.length; i++) {
+            let data = {};
+            data[this.props.coins_list[i].id] = 0;
+
+            for (let j=0; j < this.props.coins.length; j ++ ){
+
+                if (this.props.coins_list[i].name === this.props.coins[j].name){
+                    console.log(this.props.coins[j].amount);
+
+                    data[this.props.coins_list[i].id] = parseInt(this.props.coins[j].amount)
+
+                }
+
+            }
+            user_amounts = Object.assign({}, user_amounts, data);
+        }
+
+        return user_amounts
+
+
+    }
+
+
+    get_curr_prices(){
+        let curr_prices = {};
+        for (let i = 0; i < this.props.coins_list.length; i++) {
+            let data = {};
+            if  (this.props.coins_list[i].name === "bitcoin"){
+
+                data[this.props.coins_list[i].id] = this.props.bitcoin_curr_coinbase;
+            }
+
+            else if (this.props.coins_list[i].name === "ethereum"){
+                data[this.props.coins_list[i].id] = this.props.ethereum_curr_coinbase;
+
+
+            }
+            else if (this.props.coins_list[i].name === "litcoin"){
+                data[this.props.coins_list[i].id] = this.props.litcoin_curr_coinbase;
+            }
+
+            else {
+                data[this.props.coins_list[i].id] = this.props.cash_curr_coinbase;
+            }
+
+
+            curr_prices = Object.assign({}, curr_prices, data);}
+
+
+            return curr_prices
+        }
+
+
+
+
+
+
 
     transaction(event){
         if(this.state.sell_buy_coin == null){
@@ -33,10 +110,39 @@ class Dashboard extends React.Component {
         }
 
         let amount = this.state.sell_buy_amount;
+
+        let price = parseFloat(this.get_curr_prices()[parseInt(this.state.sell_buy_coin)].join(''));
+        console.log("priceceeeeeeeeeeeeepriceceeeeeeeeeeeeepriceceeeeeeeeeeeee",price);
+
         if(this.state.sell_buy == "sell" ){
-            amount = -amount
+
+            amount = -amount;
+
+            let user_amount = this.get_user_amounts();
+
+            console.log("You have this amount of money", user_amount[this.state.sell_buy_coin]);
+
+            if (user_amount[this.state.sell_buy_coin] + amount < 0 ){
+
+                alert("You Don't have this amount coin to sell, please buy some first!");
+                return;
+            }
+
         }
-        api.update_coins({coin_trans: {user_id: this.props.token.user_id, coin_id: parseInt(this.state.sell_buy_coin), amount: parseInt(amount)}}, this.props.token.token)
+
+        else {
+
+            if (this.props.token.money - amount * price < 0 ){
+
+                alert("You Don't have enough money, please contact admin to charge!");
+                return;
+
+            }
+
+        }
+
+
+        api.update_coins({coin_trans: {user_id: this.props.token.user_id, coin_id: parseInt(this.state.sell_buy_coin),coin_price: price ,amount: parseInt(amount)}}, this.props.token.token)
 
         return;
     }
@@ -52,16 +158,18 @@ class Dashboard extends React.Component {
         else if(this.state.set_alert == "cancel"){
             above = -1
         }
-        api.update_alert({coin_alert: {user_id: this.props.token.user_id, coin_id: this.state.set_alert_coin, amount: this.state.set_alert_amount, above: above}}, this.props.token.token);
+        api.update_alert({coin_alert: {user_id: this.props.token.user_id, coin_id: parseInt(this.state.set_alert_coin), amount: parseInt(this.state.set_alert_amount), above: above}}, this.props.token.token);
     }
+
     update(ev) {
         let tgt = $(ev.target);
-
 
         let data = {};
         data[tgt.attr('name')] = tgt.val();
 
-        this.setState($.extend(this.state, data));
+        this.setState(data);
+
+        console.log(this.state)
 
     }
 
@@ -280,6 +388,7 @@ function state2props(state) {
         // token: state.token,
         // data: [20, 10],
 
+        coins : state.token.coins,
         token: state.token,
         coins_list: state.coins_list,
         user_form: state.user_form,

@@ -41,6 +41,7 @@ $(function() {
     default_channel.join();
 
     default_channel.on("new_state", datas => {
+        api.get_coins();
         update_store(datas)
 });
 

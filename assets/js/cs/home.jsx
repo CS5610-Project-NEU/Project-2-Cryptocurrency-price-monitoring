@@ -58,8 +58,7 @@ function Home(props) {
         let diff = Math.round((end_price - start_price) * 100) / 100 ;
         let res = "";
         let perc = Math.round((diff / start_price) * 10000) / 100 ;
-        console.log(prices);
-        console.log(diff);
+
         if (diff > 0){
             res = "+" + diff + "       +" + perc + "%"
 

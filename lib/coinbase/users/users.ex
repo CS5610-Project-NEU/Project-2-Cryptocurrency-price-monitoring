@@ -68,6 +68,8 @@ defmodule Coinbase.Users do
 
   """
   def update_user(%User{} = user, attrs) do
+
+
     user
     |> User.changeset(attrs)
     |> Repo.update()
