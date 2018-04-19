@@ -12,6 +12,8 @@ defmodule CoinbaseWeb.Coin_alertView do
 
   def render("coin_alert.json", %{coin_alert: coin_alert}) do
     %{id: coin_alert.id,
+      user_id: coin_alert.user_id,
+      coin_id: coin_alert.coin_id,
       amount: coin_alert.amount}
   end
 end

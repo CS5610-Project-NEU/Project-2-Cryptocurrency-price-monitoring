@@ -39,8 +39,6 @@ let default_user_form = {
     litcoin_alert_above : "100",
     ethereum_alert_below : "1000",
     cash_alert_below : "500",
-
-
 };
 
 
@@ -316,7 +314,7 @@ let empty_user_form = {
 
 function form(state = empty_user_form, action) {
   switch (action.type) {
-    case 'UPDATE_FORM':
+    case 'UPDATE_FORM': 
       return Object.assign({}, state, action.data);
     case 'CLEAR_FORM':
       return empty_user_form;
@@ -345,6 +343,15 @@ function user_errors(state = default_user_errors, action) {
    default:
      return state;
  }
+}
+
+function coins_list(state = [], action){
+    switch (action.type){
+    case 'COINS_LIST':
+        return action.data;
+    default:
+        return state;
+    }
 }
 
 function token(state = null, action) {
@@ -386,7 +393,8 @@ function root_reducer(state0, action) {
             bitcoin_curr_coinbase,bitcoin_month_coinbase,bitcoin_week_coinbase,bitcoin_day_coinbase,bitcoin_hour_coinbase,bitcoin_year_coinbase,
             ethereum_curr_coinbase,ethereum_month_coinbase,ethereum_week_coinbase,ethereum_day_coinbase,ethereum_hour_coinbase,ethereum_year_coinbase,
             litcoin_curr_coinbase,litcoin_month_coinbase,litcoin_week_coinbase,litcoin_day_coinbase,litcoin_hour_coinbase,litcoin_year_coinbase,
-            cash_curr_coinbase,cash_month_coinbase,cash_week_coinbase,cash_day_coinbase,cash_hour_coinbase,cash_year_coinbase
+            cash_curr_coinbase,cash_month_coinbase,cash_week_coinbase,cash_day_coinbase,cash_hour_coinbase,cash_year_coinbase,
+            coins_list
         });
     let state1 = reducer(state0, action);
    /// console.log("state1", state1);

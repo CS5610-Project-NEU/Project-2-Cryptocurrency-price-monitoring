@@ -12,11 +12,21 @@ defmodule CoinbaseWeb.Coin_alertController do
   end
 
   def create(conn, %{"coin_alert" => coin_alert_params}) do
-    with {:ok, %Coin_alert{} = coin_alert} <- Coins.create_coin_alert(coin_alert_params) do
-      conn
-      |> put_status(:created)
-    #  |> put_resp_header("location", coin_alert_path(conn, :show, coin_alert))
-      |> render("show.json", coin_alert: coin_alert)
+    if (coin_alert_params["above"] == -1) do
+      res = Coins.delete_alert(coin_alert_params["user_id"], coin_alert_params["coin_id"])
+    end
+
+    coin_alert = Coins.get_coin_alert_by_params(coin_alert_params)
+    if coin_alert do
+      with {:ok, %Coin_alert{} = coin_alert} <- Coins.update_coin_alert(coin_alert, coin_alert_params) do
+        render(conn, "show.json", coin_alert: coin_alert)
+      end
+    else
+      with {:ok, %Coin_alert{} = coin_alert} <- Coins.create_coin_alert(coin_alert_params) do
+        conn
+        |> put_status(:created)
+        |> render("show.json", coin_alert: coin_alert)
+      end
     end
   end
 

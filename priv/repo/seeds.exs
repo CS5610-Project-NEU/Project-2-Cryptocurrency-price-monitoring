@@ -36,9 +36,9 @@ defmodule Seeds do
 
     Repo.delete_all(Coin_alert)
     Repo.insert!(%Coin_alert{ user_id: a.id,coin_id: coin1.id, amount: 100.0, above: 1})
-    Repo.insert!(%Coin_alert{ user_id: a.id,coin_id: coin1.id, amount: 0.0, above: 1})
-    Repo.insert!(%Coin_alert{ user_id: a.id,coin_id: coin1.id, amount: 1000.0, above: 1})
-    Repo.insert!(%Coin_alert{ user_id: a.id,coin_id: coin1.id, amount: 10000.0, above: 1})
+    Repo.insert!(%Coin_alert{ user_id: a.id,coin_id: coin2.id, amount: 0.0, above: 1})
+    Repo.insert!(%Coin_alert{ user_id: a.id,coin_id: coin3.id, amount: 1000.0, above: 1})
+    Repo.insert!(%Coin_alert{ user_id: a.id,coin_id: coin4.id, amount: 10000.0, above: 1})
 
     end
 end

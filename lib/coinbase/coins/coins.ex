@@ -7,6 +7,7 @@ defmodule Coinbase.Coins do
   alias Coinbase.Repo
 
   alias Coinbase.Coins.Coin
+  alias Coinbase.Coins.Coin_alert
 
   @doc """
   Returns the list of coins.
@@ -133,6 +134,10 @@ defmodule Coinbase.Coins do
   """
   def get_coin_purchase!(id), do: Repo.get!(Coin_purchase, id)
 
+
+  def get_coin_purchase(user_id, coin_id) do
+    Repo.get_by(Coin_purchase,%{user_id: user_id, coin_id: coin_id})
+  end
   @doc """
   Creates a coin_purchase.
 
@@ -145,6 +150,12 @@ defmodule Coinbase.Coins do
       {:error, %Ecto.Changeset{}}
 
   """
+
+  def delete_alert(user_id, coin_id) do
+    query = from a in Coin_alert,
+      where: a.user_id == ^user_id and a.coin_id == ^coin_id
+    Repo.delete_all(query)
+  end
   def create_coin_purchase(attrs \\ %{}) do
     %Coin_purchase{}
     |> Coin_purchase.changeset(attrs)
@@ -167,6 +178,13 @@ defmodule Coinbase.Coins do
     coin_purchase
     |> Coin_purchase.changeset(attrs)
     |> Repo.update()
+  end
+
+  def update_coin_amount(%Coin_purchase{} = coin_purchase, amount) do
+    coin_purchase
+    |> Coin_purchase.changeset(%{amount: coin_purchase.amount + amount })
+    |> Repo.update()
+
   end
 
   @doc """
@@ -197,8 +215,6 @@ defmodule Coinbase.Coins do
   def change_coin_purchase(%Coin_purchase{} = coin_purchase) do
     Coin_purchase.changeset(coin_purchase, %{})
   end
-
-  alias Coinbase.Coins.Coin_alert
 
   @doc """
   Returns the list of coin_alert.
@@ -292,5 +308,9 @@ defmodule Coinbase.Coins do
   """
   def change_coin_alert(%Coin_alert{} = coin_alert) do
     Coin_alert.changeset(coin_alert, %{})
+  end
+
+  def get_coin_alert_by_params(attrs) do
+    Repo.get_by(Coin_alert, %{user_id: attrs["user_id"], coin_id: attrs["coin_id"], above: attrs["above"]})
   end
 end

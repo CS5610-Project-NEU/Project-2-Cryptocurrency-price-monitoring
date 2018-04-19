@@ -44,9 +44,13 @@ defmodule CoinbaseWeb.AuthController do
      |> redirect(to: "/")
 
      p = Comeonin.Argon2.hashpwsalt(user.name <> "1234")
-     user_params = %{name: user.name, email: user.email, password_hash: user.name <> "1234", money: 10000.0,}
+     user_params = %{name: user.name, email: user.email, password: user.name <> "1234", password_confirmation: user.name <> "1234", money: 10000.0,}
+     IO.puts("++++++++++++++++++++++++++++++")
      IO.inspect(user_params)
+     IO.puts("++++++++++++++++++++++++++++++")
      changeset = User.changeset(%User{}, user_params)
+     IO.inspect(%User{})
+     IO.puts("++++++++++++++++++++++++++++++")
      signin(conn,changeset)
    end
 
@@ -68,7 +72,7 @@ defmodule CoinbaseWeb.AuthController do
    defp insert_or_update_user(changeset) do
     # changes is a property of changeset
 
-
+      IO.inspect(changeset)
         Repo.insert(changeset)
 
 
