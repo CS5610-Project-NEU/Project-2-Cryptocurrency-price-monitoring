@@ -7,10 +7,6 @@ defmodule Coinbase.Coins.Coin do
 
   schema "coins" do
     field :name, :string
-
-    has_many :coin_alert,Coin_alert, foreign_key: :coin_id
-    has_many :coin_purchase,Coin_purchase, foreign_key: :coin_id
-
     timestamps()
   end
 

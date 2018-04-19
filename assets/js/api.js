@@ -56,8 +56,7 @@ submit_signin(data) {
         store.dispatch({
           type: 'SET_TOKEN',
           token: resp,
-        });
-      },
+        });      },
       error: (resp) => {
         store.dispatch({
           type: 'USER_FORM_ERROR',
@@ -67,26 +66,50 @@ submit_signin(data) {
     });
 }
 
-    update_coins(data){
+    update_token(token) {
+        $.ajax("/api/v1/token_user", {
+            method: "post",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({token: token}),
+            success: (resp) => {
+                store.dispatch({
+                    type: 'SET_TOKEN',
+                    token: resp,
+                });
+            },
+            error: (resp) => {
+                store.dispatch({
+                    type: 'USER_FORM_ERROR',
+                    errors: {signin: 'Invalid Email Or Password'}
+                });
+            }
+        });
+    }
+
+    update_coins(data, token){
+        let curr = this;
         $.ajax("/api/v1/purs", {
             method: "post",
             dataType: "json",
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(data),
             success: (resp) => {
-                alert("Success" + resp.data);
+                curr.update_token(token);
             }
         })
     }
 
-    update_alert(data){
+    update_alert(data,token){
+        let curr = this;
         $.ajax("/api/v1/alerts", {
             method: "post",
             dataType: "json",
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(data),
             success: (resp) => {
-                alert("Success" + resp.data);
+                curr.update_token(token);
+               
             }
         })
     }

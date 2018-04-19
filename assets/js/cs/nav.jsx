@@ -86,28 +86,29 @@ class Nav extends React.Component{
         return(
 
             <div>
+            {this.props.token?
 
-                <Collapse isOpen={!this.state.collapsed}>
-                    <div class="bg-dark p-4">
-                        <h4 class="text-white">Welcome {this.props.user_form.username}</h4>
-                        <span class="text-muted">Your balance is ${this.props.user_form.money}</span>
-                    </div>
-                </Collapse>
+             <Collapse isOpen={!this.state.collapsed}>
+                 <div class="bg-dark p-4">
+                     <h4 class="text-white">Welcome {this.props.token.user_name}</h4>
+                     <span class="text-muted">Your balance is ${this.props.token.money}</span>
+                 </div>
+             </Collapse>
+           : ""}
+            
+            <nav className="navbar navbar-dark bg-dark">
 
+            {this.props.token?
+             <NavItem>
 
-                <nav className="navbar navbar-dark bg-dark">
+                 <div class="border border-white">
+                     <button class="navbar-toggler" type="button" onClick={this.toggleNavbar}>
+                         <span class="navbar-toggler-icon"></span>
+                     </button>
+                 </div>
 
-                    {this.props.token?
-                <NavItem>
-
-                    <div class="border border-white">
-                        <button class="navbar-toggler" type="button" onClick={this.toggleNavbar}>
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-
-                </NavItem>
-                        : ""}
+             </NavItem>
+           : ""}
                 <NavItem>
                     <NavLink to="/" href="#"  className="nav-link">
                               <span className="navbar-brand">

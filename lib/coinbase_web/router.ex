@@ -56,5 +56,6 @@ defmodule CoinbaseWeb.Router do
     resources "/purs", Coin_purchaseController, except: [:new, :edit]
     resources "/alerts", Coin_alertController, except: [:new, :edit]
     post "/token", TokenController, :create
+    post "/token_user", TokenController, :connect
   end
 end
