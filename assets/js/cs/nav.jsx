@@ -79,6 +79,8 @@ class Nav extends React.Component{
                     </ul>
                 </div>;
         }
+
+        let balance = this.props.token? Math.round((this.props.token.money) * 100) / 100 : 0;
         return(
 
             <div>
@@ -88,7 +90,7 @@ class Nav extends React.Component{
                     {/*Welcome { window.localStorage.getItem("user_id") ? window.localStorage.getItem("user_id") : window.localStorage.getItem("googleuser_id") }*/}
 
                         <h4 className="text-white">Welcome {this.props.token.user_name}</h4>
-                        <span className="text-muted">Your balance is ${this.props.token.money}</span>
+                        <span className="text-muted">Your balance is ${balance}</span>
                     </div>
                 </Collapse>
 

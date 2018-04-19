@@ -178,25 +178,32 @@ class Dashboard extends React.Component {
     render() {
 
 
-        let bitcoin_curr_coinbase = parseFloat (this.props.bitcoin_curr_coinbase) ;
-        let ethereum_curr_coinbase = parseFloat (this.props.ethereum_curr_coinbase) ;
-        let litcoin_curr_coinbase = parseFloat (this.props.litcoin_curr_coinbase) ;
-        let cash_curr_coinbase = parseFloat (this.props.cash_curr_coinbase);
+        let bitcoin_curr_coinbase = parseFloat (this.props.bitcoin_curr_coinbase.join('')) ;
+        let ethereum_curr_coinbase = parseFloat (this.props.ethereum_curr_coinbase.join('')) ;
+        let litcoin_curr_coinbase = parseFloat (this.props.litcoin_curr_coinbase.join('')) ;
+        let cash_curr_coinbase = parseFloat (this.props.cash_curr_coinbase.join(''));
 
 
         function get_money(curr,own){
-            let price = 0
+            let price = 0;
+            console.log("currcurrcurrcurrcurrcurrcurrcurr",curr)
             switch (curr){
                 case "bitcoin":
                     price = bitcoin_curr_coinbase;
+                    return Math.round((price * own) * 100) / 100;
             case "ethereum":
             price = ethereum_curr_coinbase;
+                return Math.round((price * own) * 100) / 100;
             case "litcoin":
                     price = litcoin_curr_coinbase;
+                return Math.round((price * own) * 100) / 100;
             case "cash":
             price = cash_curr_coinbase;
+                return Math.round((price * own) * 100) / 100;
+                default:
+                    return 0
         }
-        return Math.round((price * own) * 100) / 100 ;
+ 
     }
 
     function get_name(name){
@@ -213,8 +220,8 @@ class Dashboard extends React.Component {
                 return "";
         }
     };
-        let labels = this.props.token.coins.map(x => get_name(x.name))
-        let infodata = this.props.token.coins.map(x => get_money(x.name, x.amount))
+        let labels = this.props.token.coins.map(x => get_name(x.name));
+        let infodata = this.props.token.coins.map(x => get_money(x.name, x.amount));
         console.log(infodata)
     let data = {
             labels: labels,
@@ -393,16 +400,14 @@ function state2props(state) {
         coins_list: state.coins_list,
         user_form: state.user_form,
         bitcoin_curr_coinbase:state.bitcoin_curr_coinbase,
-        bitcoin_day_coinbase:state.bitcoin_day_coinbase,
 
         ethereum_curr_coinbase:state.ethereum_curr_coinbase,
-        ethereum_day_coinbase:state.ethereum_day_coinbase,
 
         litcoin_curr_coinbase:state.litcoin_curr_coinbase,
-        litcoin_day_coinbase:state.litcoin_day_coinbase,
+
 
         cash_curr_coinbase:state.cash_curr_coinbase,
-        cash_day_coinbase:state.cash_day_coinbase,
+
 
 
     };
