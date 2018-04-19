@@ -105,6 +105,12 @@ class Dashboard extends React.Component {
 
 
     transaction(event){
+
+        if (this.state.sell_buy_amount < 0){
+            alert("amount cannot be negtive");
+            return
+        }
+
         if(this.state.sell_buy_coin == null){
             return;
         }
@@ -142,12 +148,17 @@ class Dashboard extends React.Component {
         }
 
 
-        api.update_coins({coin_trans: {user_id: this.props.token.user_id, coin_id: parseInt(this.state.sell_buy_coin),coin_price: price ,amount: parseInt(amount)}}, this.props.token.token)
+        api.update_coins({coin_trans: {user_id: this.props.token.user_id, coin_id: parseInt(this.state.sell_buy_coin),coin_price: price ,amount: parseFloat(amount)}}, this.props.token.token)
 
         return;
     }
 
     set_alert(event){
+
+        if (this.state.set_alert_amount < 0){
+            alert("amount cannot be negtive");
+            return
+        }
         if(this.state.set_alert_coin == null){
             return;
         }
@@ -158,7 +169,7 @@ class Dashboard extends React.Component {
         else if(this.state.set_alert == "cancel"){
             above = -1
         }
-        api.update_alert({coin_alert: {user_id: this.props.token.user_id, coin_id: parseInt(this.state.set_alert_coin), amount: parseInt(this.state.set_alert_amount), above: above}}, this.props.token.token);
+        api.update_alert({coin_alert: {user_id: this.props.token.user_id, coin_id: parseInt(this.state.set_alert_coin), amount: parseFloat(this.state.set_alert_amount), above: above}}, this.props.token.token);
     }
 
     update(ev) {
@@ -203,7 +214,7 @@ class Dashboard extends React.Component {
                 default:
                     return 0
         }
- 
+
     }
 
     function get_name(name){
