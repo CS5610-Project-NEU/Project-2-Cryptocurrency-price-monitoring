@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9c9b5d6-5e9a-4236-8b31-c30133e15a69" name="Default" comment="Dashboard almost done">
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/coinbase/send_email.ex" />
+    <list default="true" id="a9c9b5d6-5e9a-4236-8b31-c30133e15a69" name="Default" comment="Nav bar and sending email DB">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/assets/js/app.js" afterPath="$PROJECT_DIR$/assets/js/app.js" />
-      <change beforePath="$PROJECT_DIR$/assets/js/cs/charts.jsx" afterPath="$PROJECT_DIR$/assets/js/cs/charts.jsx" />
-      <change beforePath="$PROJECT_DIR$/assets/js/cs/coinprice.jsx" afterPath="$PROJECT_DIR$/assets/js/cs/coinprice.jsx" />
-      <change beforePath="$PROJECT_DIR$/assets/js/cs/home.jsx" afterPath="$PROJECT_DIR$/assets/js/cs/home.jsx" />
-      <change beforePath="$PROJECT_DIR$/assets/js/cs/nav.jsx" afterPath="$PROJECT_DIR$/assets/js/cs/nav.jsx" />
-      <change beforePath="$PROJECT_DIR$/assets/js/store.js" afterPath="$PROJECT_DIR$/assets/js/store.js" />
-      <change beforePath="$PROJECT_DIR$/assets/package.json" afterPath="$PROJECT_DIR$/assets/package.json" />
-      <change beforePath="$PROJECT_DIR$/config/config.exs" afterPath="$PROJECT_DIR$/config/config.exs" />
-      <change beforePath="$PROJECT_DIR$/lib/coinbase/application.ex" afterPath="$PROJECT_DIR$/lib/coinbase/application.ex" />
-      <change beforePath="$PROJECT_DIR$/lib/coinbase/update_channel_genServer.ex" afterPath="$PROJECT_DIR$/lib/coinbase/update_channel_genServer.ex" />
-      <change beforePath="$PROJECT_DIR$/lib/coinbase_web/views/token_view.ex" afterPath="$PROJECT_DIR$/lib/coinbase_web/views/token_view.ex" />
+      <change beforePath="$PROJECT_DIR$/lib/coinbase/send_email.ex" afterPath="$PROJECT_DIR$/lib/coinbase/send_email.ex" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -50,17 +39,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="send_email.ex" pinned="false" current-in-tab="false">
+      <file leaf-file-name="send_email.ex" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/coinbase/send_email.ex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="107" column="36" lean-forward="true" selection-start-line="107" selection-start-column="36" selection-end-line="107" selection-end-column="36" />
+            <state relative-caret-position="594">
+              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auth_controller.ex" pinned="false" current-in-tab="true">
+      <file leaf-file-name="auth_controller.ex" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/coinbase_web/controllers/auth_controller.ex">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-306">
@@ -75,6 +64,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="token_view.ex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/coinbase_web/views/token_view.ex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -120,18 +119,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/cs/nav.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -160,8 +147,8 @@
         <option value="$PROJECT_DIR$/assets/js/cs/nav.jsx" />
         <option value="$PROJECT_DIR$/assets/js/cs/home.jsx" />
         <option value="$PROJECT_DIR$/lib/coinbase_web/emails/user_email.ex" />
-        <option value="$PROJECT_DIR$/lib/coinbase/send_email.ex" />
         <option value="$PROJECT_DIR$/assets/js/app.js" />
+        <option value="$PROJECT_DIR$/lib/coinbase/send_email.ex" />
       </list>
     </option>
   </component>
@@ -416,22 +403,29 @@
       <option name="project" value="LOCAL" />
       <updated>1524012325278</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Nav bar and sending email DB">
+      <created>1524101666927</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1524101666927</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35636000" />
+    <option name="totallyTimeSpent" value="36482000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1215" height="804" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23154363" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36241612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33037037" sideWeight="0.5167785" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2074074" sideWeight="0.48322147" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2074074" sideWeight="0.48322147" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32740742" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24946846" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29777777" sideWeight="0.5922819" order="9" side_tool="false" content_ui="tabs" />
@@ -485,7 +479,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="doing dash" />
     <MESSAGE value="Dashboard almost done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dashboard almost done" />
+    <MESSAGE value="Nav bar and sending email DB" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nav bar and sending email DB" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -659,14 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/coinbase_web/views/token_view.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -845,30 +832,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/coinbase_web/emails/user_email.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="27" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/coinbase/send_email.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="107" column="36" lean-forward="true" selection-start-line="107" selection-start-column="36" selection-end-line="107" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/coinbase_web/controllers/token_controller.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/cs/home.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -891,6 +854,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-306">
           <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/coinbase_web/views/token_view.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/coinbase_web/controllers/token_controller.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/coinbase_web/emails/user_email.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="27" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/coinbase/send_email.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>

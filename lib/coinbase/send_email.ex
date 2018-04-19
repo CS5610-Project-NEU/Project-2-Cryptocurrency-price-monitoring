@@ -35,9 +35,6 @@ defmodule Coinbase.SendEmail do
     send_mail_by_threshold()
 
 
-    send_mail()
-
-
 
 
 
@@ -103,7 +100,7 @@ defmodule Coinbase.SendEmail do
     Process.send_after self(), :update, interval
   end
 
-  def send_mail(email_address) do
+  def send_mail(email_addres) do
     email_address ="vipulsharma018@gmail.com"
     UserEmail.welcome(email_address)
     |> SendgridMailer.deliver
