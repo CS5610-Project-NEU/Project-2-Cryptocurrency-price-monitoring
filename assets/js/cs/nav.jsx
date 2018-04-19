@@ -124,7 +124,7 @@ class Nav extends React.Component{
                         <div style={{width: "80px"}}>
 
                         <NavItem>
-                            {(this.props.token || signin_token || gsignin_token)?    <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink>: ""}
+                             <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink>
                         </NavItem>
                     </div>
                       <div style={{width: "80px"}}>
