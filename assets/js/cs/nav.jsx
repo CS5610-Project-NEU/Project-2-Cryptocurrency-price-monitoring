@@ -52,11 +52,11 @@ class Nav extends React.Component{
 
 
         let session_info;
-        let tok = window.localStorage.getItem("token");
-        let uid = window.localStorage.getItem("user_id");
-        let token = {"user_id": uid, "token": tok};
-        let tok1 = window.localStorage.getItem("googletoken");
-        if (this.props.token || tok || tok1) {
+        let signin_token = window.localStorage.getItem("token");
+        let normal_user_id = window.localStorage.getItem("user_id");
+        let token = {"user_id": normal_user_id, "token": signin_token};
+        let gsignin_token = window.localStorage.getItem("gtoken");
+        if (this.props.token || signin_token || gsignin_token) {
             session_info = <Session token={this.props.token} prop={this.props} />;
         }
         else {
@@ -87,7 +87,7 @@ class Nav extends React.Component{
                 {this.props.token?
                 <Collapse isOpen={!this.state.collapsed}>
                     <div className="bg-dark p-4">
-                    {/*Welcome { window.localStorage.getItem("user_id") ? window.localStorage.getItem("user_id") : window.localStorage.getItem("googleuser_id") }*/}
+                    {/*Welcome { window.localStorage.getItem("user_id") ? window.localStorage.getItem("user_id") : window.localStorage.getItem("guser_id") }*/}
 
                         <h4 className="text-white">Welcome {this.props.token.user_name}</h4>
                         <span className="text-muted">Your balance is ${balance}</span>
@@ -123,14 +123,14 @@ class Nav extends React.Component{
                     <div className={"row"}>
                         <div style={{width: "80px"}}>
 
-                    <NavItem>
-                        <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink>
-                    </NavItem>
-                        </div>
-                        <div style={{width: "80px"}}>
-                    <NavItem>
-                        {(this.props.token || tok || tok1)? <NavLink to="/dashboard" href="#"  className="nav-link">Dashboard</NavLink> : ""}
-                    </NavItem>
+                        <NavItem>
+                            {(this.props.token || signin_token || gsignin_token)?    <NavLink to="/charts" href="#"  className="nav-link">Charts</NavLink>: ""}
+                        </NavItem>
+                    </div>
+                      <div style={{width: "80px"}}>
+                          <NavItem>
+                          {(this.props.token || signin_token || gsignin_token)? <NavLink to="/dashboard" href="#"  className="nav-link">Dashboard</NavLink> : ""}
+                          </NavItem>
                         </div>
 
                     </div>
