@@ -61,9 +61,7 @@ defmodule Coinbase.SendEmail do
 
     below_list = get_alert_list(0)
     above_list = get_alert_list(1)
-    IO.inspect above_list
 
-    IO.inspect cash_curr_coinbase
 
 
     above_list_bitcoin =  Enum.filter(above_list, fn(x) -> x.amount < bitcoin_curr_coinbase and x.coin_id == 1 end)
@@ -77,8 +75,6 @@ defmodule Coinbase.SendEmail do
     below_list_litcoin =  Enum.filter(below_list, fn(x) -> x.amount >= litcoin_curr_coinbase and x.coin_id == 3 end)
     below_list_cash =  Enum.filter(below_list, fn(x) -> x.amount >= cash_curr_coinbase and x.coin_id == 4 end)
 
-
-    IO.inspect above_list_cash
 
     send_info(above_list_bitcoin,"bitcoin",bitcoin_curr_coinbase,"above")
     send_info(above_list_ethereum,"ethereum",ethereum_curr_coinbase,"above")

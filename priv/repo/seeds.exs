@@ -28,8 +28,8 @@ defmodule Seeds do
 
     Repo.delete_all(Coin)
     coin1 =  Repo.insert!(%Coin{ name: "bitcoin"}) # 1
-    coin2 = Repo.insert!(%Coin{ name: "litcoin"}) # 2
-    coin3 = Repo.insert!(%Coin{ name: "ethereum"}) # 3
+    coin2 = Repo.insert!(%Coin{ name: "ethereum"})# 2
+    coin3 = Repo.insert!(%Coin{ name: "litcoin"}) # 3
     coin4 = Repo.insert!(%Coin{ name: "cash"}) # 4
 
     Repo.delete_all(Coin_alert)

@@ -103,6 +103,20 @@ function Home(props) {
      </div>
  }
 
+ function go_dash(e) {
+
+         e.preventDefault();
+         props.history.push('/dashboard');
+
+ }
+ function go_signin(e) {
+
+
+     e.preventDefault();
+     props.history.push('/signin');
+
+ }
+
  return <div>
 
      <div className={"container"} style={{position:"relative",top:"100px"}}>
@@ -130,8 +144,8 @@ function Home(props) {
                      />
 
                      {props.token?
-                     <a href="/dashboard"  class="btn btn-outline-dark nav-link">Buy Bitcoin</a> :
-                         <a href="/signin"  class="btn btn-outline-dark nav-link">Buy Bitcoin</a>}
+                     <a class="btn btn-outline-dark nav-link" onClick={go_dash}>Buy Bitcoin</a> :
+                         <a class="btn btn-outline-dark nav-link" onClick={go_signin}>Buy Bitcoin</a>}
 
                  </div>
              </div>
