@@ -21,6 +21,8 @@ function Signup(props) {
   }
 
   function submit(ev) {
+console.log("ev is ")
+    console.log(ev);
     api.register_user(props.form);
   }
 

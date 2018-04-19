@@ -15,10 +15,7 @@ class Nav extends React.Component{
         this.state = {
             collapsed: true
         };
-        if(props.token){
-          window.localStorage.setItem("token", props.token.token);
-          window.localStorage.setItem("user_id", this.props.user_form.username);
-        }
+
 
     }
 
@@ -32,6 +29,12 @@ class Nav extends React.Component{
 
 
         let Session = connect(({token}) => {return {token};})((props) => {
+          if(props.token){
+            window.localStorage.setItem("token", props.token.token);
+            window.localStorage.setItem("user_id", this.props.token.user_name);
+            console.log("user is" + this.props.token.user_name);
+          }
+          
             function remove_token(){
                 let act = {
                     type: 'REMOVE_TOKEN'

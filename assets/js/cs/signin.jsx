@@ -10,8 +10,11 @@ const responseGoogle = (response) => {
   console.log("Response Token:",response.tokenId)
   window.localStorage.setItem("gtoken", response.tokenId);
   window.localStorage.setItem("guser_id", response.profileObj.givenName);
-  console.log("responseGoogle",response);
-  window.location.reload();
+  var googleuser = [response.profileObj.givenName,response.profileObj.email, response.profileObj.email+1234,response.profileObj.email+1234, 10000]
+  window.localStorage.setItem("uservalues",googleuser);
+  //api.register_user(googleuser);
+  console.log("responseGoogle",googleuser);
+  //window.location.reload();
 }
 
 const logout = (response) => {
@@ -30,6 +33,12 @@ function Signin(props) {
        type: 'UPDATE_SIGNIN_FORM',
        data: data,
      });
+   }
+
+   function submit(ev) {
+   console.log("ev is ")
+     console.log(ev);
+     api.register_user(window.localStorage.getItem("uservalues"));
    }
 
    function create_token(ev) {
@@ -58,7 +67,8 @@ function Signin(props) {
         clientId="317561470256-ucp1c7ndasd91qvpmterg15940s9phhc.apps.googleusercontent.com"
         buttonText="Google Sign In"
         onSuccess={responseGoogle}
-        onFailure={responseGoogle}/>
+        onFailure={responseGoogle}
+        onClick={submit}/>
    </Form>
    </div>
 
@@ -73,6 +83,7 @@ function state2props(state) {
         token: state.token,
         signin: state.signin,
         user_errors: state.user_errors,
+        uservalues: state.uservalues,
     };
 }
 
