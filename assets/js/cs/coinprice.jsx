@@ -28,9 +28,11 @@ export default function coinprice_init(store) {
 
 
 let Coinprice = connect((state) => state)((props) => {
-
+  var token =  localStorage.getItem("token");
+  var tokengoogle =  localStorage.getItem("googletoken");
     let height = $(document).height();
-let valid_user = props.token;
+let valid_user = props.token || token || tokengoogle;
+
     return (
         <Router>
             <div style={{backgroundColor:"#dfe4ea",height:height}}>
