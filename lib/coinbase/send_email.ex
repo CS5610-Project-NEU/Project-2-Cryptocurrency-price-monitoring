@@ -35,7 +35,6 @@ defmodule Coinbase.SendEmail do
     send_mail_by_threshold()
 
 
-    send_mail()
 
 
 

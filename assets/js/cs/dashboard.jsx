@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse,NavItem, NavLink,  Form, Button, FormGroup, Label, Input } from 'reactstrap';
+import { Badge, Collapse,NavItem, NavLink,  Form, Button, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux';
 import api from '../api';
 
@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
         if(this.state.sell_buy == "sell" ){
             amount = -amount
         }
-        api.update_coins({coin_trans: {user_id: 1, coin_id: parseInt(this.state.sell_buy_coin), amount: parseInt(amount)}})
+        api.update_coins({coin_trans: {user_id: this.props.token.user_id, coin_id: parseInt(this.state.sell_buy_coin), amount: parseInt(amount)}}, this.props.token.token)
 
         return;
     }
@@ -52,7 +52,7 @@ class Dashboard extends React.Component {
         else if(this.state.set_alert == "cancel"){
             above = -1
         }
-        api.update_alert({coin_alert: {user_id: 1, coin_id: this.state.set_alert_coin, amount: this.state.set_alert_amount, above: above}});
+        api.update_alert({coin_alert: {user_id: this.props.token.user_id, coin_id: this.state.set_alert_coin, amount: this.state.set_alert_amount, above: above}}, this.props.token.token);
     }
     update(ev) {
         let tgt = $(ev.target);
@@ -62,8 +62,6 @@ class Dashboard extends React.Component {
         data[tgt.attr('name')] = tgt.val();
 
         this.setState($.extend(this.state, data));
-
-        console.log(this.state)
 
     }
 
@@ -76,26 +74,45 @@ class Dashboard extends React.Component {
         let ethereum_curr_coinbase = parseFloat (this.props.ethereum_curr_coinbase) ;
         let litcoin_curr_coinbase = parseFloat (this.props.litcoin_curr_coinbase) ;
         let cash_curr_coinbase = parseFloat (this.props.cash_curr_coinbase);
-        let bitcoin_own = parseFloat(this.props.user_form.bitcoin) ;
-        let ethereum_own = parseFloat(this.props.user_form.ethereum) ;
-        let litcoin_own = parseFloat(this.props.user_form.litcoin);
-        let cash_own = parseFloat(this.props.user_form.cash);
 
 
         function get_money(curr,own){
-            return Math.round((curr * own) * 100) / 100 ;
+            let price = 0
+            switch (curr){
+                case "bitcoin":
+                    price = bitcoin_curr_coinbase;
+            case "ethereum":
+            price = ethereum_curr_coinbase;
+            case "litcoin":
+                    price = litcoin_curr_coinbase;
+            case "cash":
+            price = cash_curr_coinbase;
         }
+        return Math.round((price * own) * 100) / 100 ;
+    }
 
-        let data = {
-            labels: [
-                "Bitcoin",
-                "Ethereum",
-                "Litcoin",
-                "Bitcoin Cash",
-            ],
+    function get_name(name){
+        switch (name){
+                    case "bitcoin":
+        return "Bitcoin"
+        case "ethereum":
+        return "Ethereum"
+        case "litcoin":
+        return "Litcoin"
+        case "cash":
+        return "Bitcoin Cash"
+        default:
+                return "";
+        }
+    };
+        let labels = this.props.token.coins.map(x => get_name(x.name))
+        let infodata = this.props.token.coins.map(x => get_money(x.name, x.amount))
+        console.log(infodata)
+    let data = {
+            labels: labels,
             datasets: [
                 {
-                    data: [get_money(bitcoin_curr_coinbase , bitcoin_own), get_money(ethereum_curr_coinbase , ethereum_own), get_money(litcoin_curr_coinbase , litcoin_own), get_money(cash_curr_coinbase, cash_own)],
+                    data: infodata,
                     backgroundColor: [
                         "#f9ca24",
                         "#eb4d4b",
@@ -118,9 +135,22 @@ class Dashboard extends React.Component {
             }
         };
 
+        function get_alert(x){
+            let above_name = "Above"
+            if(x.above == 0){
+                above_name = "Below"
+            }
+            let name = get_name(x.name)
+            return <h6>{name + ": " + x.amount} <Badge color="secondary">{above_name}</Badge></h6>
+
+        }
 
 
-        let coins = this.props.coins_list.map(x => <option key={x.id} value={x.id}>{x.name}</option>);
+        let coins = this.props.coins_list.map(x => <option key={x.id} value={x.id}>{get_name(x.name)}</option>);
+
+        let coins_show = this.props.token.coins.map(x => <h6>{get_name(x.name)}: {x.amount}</h6>)
+        let alerts_show = this.props.token.alerts.map(x => get_alert(x))
+
 
         return <div class="container-fluid">
             <div className={"row"}>
@@ -222,8 +252,11 @@ class Dashboard extends React.Component {
                 <div class="card-header">
                     General Information
                 </div>
-                <div class="card-body">
-                    <h2></h2>
+        <div class="card-body">
+                    <h2>Alerts</h2>
+                    {alerts_show}
+                    <h2>Coins Amount</h2>
+                    {coins_show}
 
 
                 </div>
@@ -247,7 +280,7 @@ function state2props(state) {
         // token: state.token,
         // data: [20, 10],
 
-        token: state.user_id,
+        token: state.token,
         coins_list: state.coins_list,
         user_form: state.user_form,
         bitcoin_curr_coinbase:state.bitcoin_curr_coinbase,

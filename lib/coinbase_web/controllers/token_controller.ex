@@ -12,4 +12,13 @@ defmodule CoinbaseWeb.TokenController do
       |> render("token.json", user: user, token: token)
     end
   end
+
+  def connect(conn, %{"token" => token}) do
+    case Phoenix.Token.verify(conn, "auth token", token, max_age: 86400) do
+      {:ok, user_id} ->
+        user =  Coinbase.Users.get_user!(user_id)
+        conn
+        |> render("token.json", user: user, token: token)
+    end 
+  end
 end

@@ -118,6 +118,13 @@ defmodule Coinbase.Coins do
     Repo.all(Coin_purchase)
   end
 
+  def list_coin_purchase_by_user(user_id) do
+    query = from p in Coin_purchase,
+      where: p.user_id == ^user_id,
+    preload: [:coin]
+    Enum.map(Repo.all(query), fn(x) -> %{amount: x.amount, name: x.coin.name} end)
+  end
+
   @doc """
   Gets a single coin_purchase.
 
@@ -229,6 +236,13 @@ defmodule Coinbase.Coins do
     Repo.all(Coin_alert)
   end
 
+
+  def list_alert_by_user(user_id) do
+    query = from p in Coin_alert,
+      where: p.user_id == ^user_id and p.above >= 0,
+      preload: [:coin]
+    Enum.map(Repo.all(query), fn(x) -> %{amount: x.amount, name: x.coin.name, above: x.above} end)
+  end
   @doc """
   Gets a single coin_alert.
 

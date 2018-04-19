@@ -27,19 +27,9 @@ import socket from "./socket"
 */
 
 let default_user_form = {
-    user_id: "1",
-    user_name: "alice",
-    email: "alice@a.com",
-    money: "10000",
-    bitcoin: "100",
-    litcoin: "200",
-    ethereum: "0",
-    cash: "1000",
-    bitcoin_alert_above : "8000",
-    litcoin_alert_above : "100",
-    ethereum_alert_below : "1000",
-    cash_alert_below : "500",
+
 };
+
 
 
 
