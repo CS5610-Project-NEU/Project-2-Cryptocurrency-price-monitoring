@@ -103,19 +103,7 @@ function Home(props) {
      </div>
  }
 
- function go_dash(e) {
 
-         e.preventDefault();
-         props.history.push('/dashboard');
-
- }
- function go_signin(e) {
-
-
-     e.preventDefault();
-     props.history.push('/signin');
-
- }
 
  return <div>
 
@@ -143,9 +131,7 @@ function Home(props) {
                            options ={get_option('hour')}
                      />
 
-                     {props.token?
-                     <a class="btn btn-outline-dark nav-link" onClick={go_dash}>Buy Bitcoin</a> :
-                         <a class="btn btn-outline-dark nav-link" onClick={go_signin}>Buy Bitcoin</a>}
+
 
                  </div>
              </div>
@@ -161,9 +147,6 @@ function Home(props) {
                            options ={get_option('hour')}
                      />
 
-                     {props.token?
-                         <a to="/dashboard" href="#" class="btn btn-outline-dark">Buy Ethereum</a> :
-                         <a to="/signup" href="#" class="btn btn-outline-dark">Buy Ethereum</a>}
                  </div>
              </div>
 
@@ -178,9 +161,6 @@ function Home(props) {
                            options ={get_option('hour')}
                      />
 
-                     {props.token?
-                         <a to="/dashboard" href="#" class="btn btn-outline-dark">Buy Litcoin</a> :
-                         <a to="/signup" href="#" class="btn btn-outline-dark">Buy Litcoin</a>}
                  </div>
              </div>
 
@@ -195,9 +175,7 @@ function Home(props) {
                            height={50}
                            options ={get_option('hour')}
                      />
-                     {props.token?
-                         <a to="/dashboard" href="#" class="btn btn-outline-dark">Buy Bitcoin Cash</a> :
-                         <a to="/signup" href="#" class="btn btn-outline-dark">Buy Bitcoin Cash</a>}
+
                  </div>
              </div>
 
