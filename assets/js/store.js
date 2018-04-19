@@ -28,7 +28,7 @@ import socket from "./socket"
 
 let default_user_form = {
     user_id: "1",
-    username: "alice",
+    user_name: "alice",
     email: "alice@a.com",
     money: "10000",
     bitcoin: "100",
@@ -390,6 +390,7 @@ function root_reducer(state0, action) {
         });
     let state1 = reducer(state0, action);
    /// console.log("state1", state1);
+    console.log(state1.token);
     return deepFreeze(state1);
 };
 

@@ -3,14 +3,6 @@ defmodule Coinbase.UpdateChannel do
   use CoinbaseWeb, :controller
   import Coinbase.CoinbaseApi
 
-  import Ecto.Query, warn: false
-  import Swoosh.Email
-  alias Coinbase.Coins.Coin_alert
-  alias Coinbase.Users.User
-  alias Coinbase.Coins.Coin
-  alias Coinbase.Repo
-  alias Coinbase.SendgridMailer
-  alias CoinbaseWeb.UserEmail
 
 
   @default_to "vipulsharma018@gmail.com"
@@ -122,13 +114,12 @@ defmodule Coinbase.UpdateChannel do
     broadcast state
 
 
-    schedule_timer(5_000) # 1 sec timer
+    schedule_timer(1_000) # 1 sec timer
     {:ok, state}
   end
 
 
   def handle_info(:update, interval) do
-     items =  Repo.all(Coin_alert)
 
      # IO.inspect items
 
@@ -226,12 +217,12 @@ defmodule Coinbase.UpdateChannel do
 
     }
     IO.inspect "+++++++++++calling FUNCTION++++++++++++++++"
-    send_mail()
+   # send_mail()
     IO.inspect "+++++++++++function CALLED++++++++++++++++"
     broadcast state
    # IO.inspect state
 
-    schedule_timer(5_000)
+    schedule_timer(1_000)
     {:noreply, ""}
   end
 

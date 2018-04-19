@@ -39,6 +39,7 @@ $(function() {
 
     let default_channel = socket.channel("rooms:lobby", {});
     default_channel.join();
+
     default_channel.on("new_state", datas => {
         update_store(datas)
 });

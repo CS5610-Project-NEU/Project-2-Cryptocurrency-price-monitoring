@@ -37,7 +37,6 @@ let valid_user = props.token;
             <Nav/>
                 <Route path="/" exact={true} render={() =>
                     <div>
-
                         <Home/>
                     </div>
                 } />
@@ -52,7 +51,6 @@ let valid_user = props.token;
 
                 <Route path="/signup" exact={true} render={() =>
                     <div>
-
                         <Signup/>
                     </div>
                 } />
@@ -66,11 +64,9 @@ let valid_user = props.token;
 
                 <Route path="/charts" exact={true} render={() =>
 
-
-                    valid_user?
-                    (  <div>
+                    <div>
                         <Charts />
-                      </div>) :  (<div><Redirect to="/" /> </div>)
+                      </div>
 
                 } />
 

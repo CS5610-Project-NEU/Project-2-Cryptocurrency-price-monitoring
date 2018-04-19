@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { Collapse,NavItem, NavLink, Button } from 'reactstrap';
-import { connect } from 'react-redux';
-import api from '../api';
 
+import { connect } from 'react-redux';
+
+import {Redirect} from 'react-router'
 import {Line} from 'react-chartjs-2';
 
 
@@ -128,7 +128,11 @@ function Home(props) {
                            height={50}
                            options ={get_option('hour')}
                      />
-                     <a href="#" class="btn btn-outline-dark">Buy Bitcoin</a>
+
+                     {props.token?
+                     <a href="/dashboard"  class="btn btn-outline-dark nav-link">Buy Bitcoin</a> :
+                         <a href="/signin"  class="btn btn-outline-dark nav-link">Buy Bitcoin</a>}
+
                  </div>
              </div>
          </div>
@@ -142,7 +146,10 @@ function Home(props) {
                            height={50}
                            options ={get_option('hour')}
                      />
-                     <a href="#" class="btn btn-outline-dark">Buy Ethereum</a>
+
+                     {props.token?
+                         <a to="/dashboard" href="#" class="btn btn-outline-dark">Buy Ethereum</a> :
+                         <a to="/signup" href="#" class="btn btn-outline-dark">Buy Ethereum</a>}
                  </div>
              </div>
 
@@ -156,7 +163,10 @@ function Home(props) {
                            height={50}
                            options ={get_option('hour')}
                      />
-                     <a href="#" class="btn btn-outline-dark">Buy Litcoin</a>
+
+                     {props.token?
+                         <a to="/dashboard" href="#" class="btn btn-outline-dark">Buy Litcoin</a> :
+                         <a to="/signup" href="#" class="btn btn-outline-dark">Buy Litcoin</a>}
                  </div>
              </div>
 
@@ -171,7 +181,9 @@ function Home(props) {
                            height={50}
                            options ={get_option('hour')}
                      />
-                     <a href="#" class="btn btn-outline-dark">Buy BitcoinCash</a>
+                     {props.token?
+                         <a to="/dashboard" href="#" class="btn btn-outline-dark">Buy Bitcoin Cash</a> :
+                         <a to="/signup" href="#" class="btn btn-outline-dark">Buy Bitcoin Cash</a>}
                  </div>
              </div>
 
@@ -188,8 +200,8 @@ function Home(props) {
 
 function state2props(state) {
     return {
-       // token: state.token,
-        // data: [20, 10],
+        token: state.token,
+
         bitcoin_curr_coinbase:state.bitcoin_curr_coinbase,
         bitcoin_day_coinbase:state.bitcoin_day_coinbase,
 

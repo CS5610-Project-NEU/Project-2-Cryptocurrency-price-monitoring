@@ -1,7 +1,6 @@
 import React from 'react';
-import { Collapse,NavItem, NavLink, Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import api from '../api';
+
 
 import {Line} from 'react-chartjs-2';
 

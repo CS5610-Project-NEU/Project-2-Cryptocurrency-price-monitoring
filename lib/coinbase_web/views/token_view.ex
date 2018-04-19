@@ -5,6 +5,8 @@ defmodule CoinbaseWeb.TokenView do
     %{
       user_id: user.id,
       user_name: user.name,
+      email: user.email,
+      money: user.money,
       token: token,
     }
   end
