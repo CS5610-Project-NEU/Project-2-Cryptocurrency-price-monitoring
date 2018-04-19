@@ -5,13 +5,6 @@ defmodule Coinbase.UpdateChannel do
 
 
 
-  @default_to "vipulsharma018@gmail.com"
-
-  @mailers %{
-    "sendgrid" => SendgridMailer,
-  }
-
-  plug :scrub_params, "email" when action in [:send]
 
   def start_link() do
     GenServer.start_link __MODULE__, %{}
@@ -216,11 +209,9 @@ defmodule Coinbase.UpdateChannel do
 
 
     }
-    IO.inspect "+++++++++++calling FUNCTION++++++++++++++++"
-   send_mail("vipulsharma018@gmail.com","Your custom alert here!")
-    IO.inspect "+++++++++++function CALLED++++++++++++++++"
+
     broadcast state
-   # IO.inspect state
+
 
     schedule_timer(1_000)
     {:noreply, ""}
@@ -230,16 +221,6 @@ defmodule Coinbase.UpdateChannel do
     Process.send_after self(), :update, interval
   end
 
-  def send_mail(email_address,body) do
-    UserEmail.welcome(email_address,body)
-    |> SendgridMailer.deliver
-    |> case do
-      {:ok, _result} ->
-        IO.inspect("Email sent successfully")
-      {:error, _reason} ->
-        IO.inspect("There was an error while sending the email")
-    end
-  end
 
 
   defp broadcast(state) do

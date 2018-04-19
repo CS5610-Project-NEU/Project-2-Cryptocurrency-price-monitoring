@@ -38,7 +38,7 @@ defmodule Coinbase.SendEmail do
 
 
 
-    schedule_timer(2_000) # 1 sec timer
+    schedule_timer(1800_000) # 1 sec timer
     {:ok, "Sending"}
   end
 
@@ -48,7 +48,7 @@ defmodule Coinbase.SendEmail do
     send_mail_by_threshold()
 
 
-    schedule_timer(2_000)
+    schedule_timer(1800_000)
     {:noreply, ""}
   end
 
@@ -61,23 +61,57 @@ defmodule Coinbase.SendEmail do
 
     below_list = get_alert_list(0)
     above_list = get_alert_list(1)
+    IO.inspect above_list
 
     IO.inspect cash_curr_coinbase
 
-    above_list_bitcoin =  Enum.filter(above_list, fn(x) -> x.amount >= bitcoin_curr_coinbase end)
-    above_list_ethereum =  Enum.filter(above_list, fn(x) -> x.amount >= ethereum_curr_coinbase end)
-    above_list_litcoin =  Enum.filter(above_list, fn(x) -> x.amount >= litcoin_curr_coinbase end)
-    above_list_cash =  Enum.filter(above_list, fn(x) -> x.amount >= cash_curr_coinbase end)
+
+    above_list_bitcoin =  Enum.filter(above_list, fn(x) -> x.amount < bitcoin_curr_coinbase and x.coin_id == 1 end)
+    above_list_ethereum =  Enum.filter(above_list, fn(x) -> x.amount < ethereum_curr_coinbase and x.coin_id == 2 end)
+    above_list_litcoin =  Enum.filter(above_list, fn(x) -> x.amount < litcoin_curr_coinbase and x.coin_id == 3 end)
+    above_list_cash =  Enum.filter(above_list, fn(x) -> x.amount < cash_curr_coinbase and x.coin_id == 4 end)
 
 
-    below_list_bitcoin =  Enum.filter(above_list, fn(x) -> x.amount < bitcoin_curr_coinbase end)
-    below_list_ethereum =  Enum.filter(above_list, fn(x) -> x.amount < ethereum_curr_coinbase end)
-    below_list_litcoin =  Enum.filter(above_list, fn(x) -> x.amount < litcoin_curr_coinbase end)
-    below_list_cash =  Enum.filter(above_list, fn(x) -> x.amount < cash_curr_coinbase end)
+    below_list_bitcoin =  Enum.filter(below_list, fn(x) -> x.amount >= bitcoin_curr_coinbase and x.coin_id == 1 end)
+    below_list_ethereum =  Enum.filter(below_list, fn(x) -> x.amount >= ethereum_curr_coinbase and x.coin_id == 2 end)
+    below_list_litcoin =  Enum.filter(below_list, fn(x) -> x.amount >= litcoin_curr_coinbase and x.coin_id == 3 end)
+    below_list_cash =  Enum.filter(below_list, fn(x) -> x.amount >= cash_curr_coinbase and x.coin_id == 4 end)
 
 
     IO.inspect above_list_cash
-  #  IO.inspect above_list
+
+    send_info(above_list_bitcoin,"bitcoin",bitcoin_curr_coinbase,"above")
+    send_info(above_list_ethereum,"ethereum",ethereum_curr_coinbase,"above")
+    send_info(above_list_litcoin,"litcoin",litcoin_curr_coinbase,"above")
+    send_info(above_list_cash,"bitcoin cash",cash_curr_coinbase,"above")
+
+
+    send_info(below_list_bitcoin,"bitcoin",bitcoin_curr_coinbase,"below")
+    send_info(below_list_ethereum,"ethereum",ethereum_curr_coinbase,"below")
+    send_info(below_list_litcoin,"litcoin",litcoin_curr_coinbase,"below")
+    send_info(below_list_cash,"bitcoin cash",cash_curr_coinbase,"below")
+
+
+
+  #  send_mail("vipulsharma018@gmail.com","heaeeeredasdasd","testingtesing")
+
+  end
+
+
+
+
+  def send_info(items,coin,price,controll) do
+
+    alert = "buy it!"
+    if controll == "above" do
+      alert = "sell it!"
+    end
+
+    header =  "The price of  #{coin} is #{controll} your threshold"
+    body = "The price of  #{coin} is #{price}, #{alert}"
+
+    Enum.map(items, fn(i) -> send_mail(i.user.email,header,body) end)
+
 
   end
 
@@ -86,8 +120,8 @@ defmodule Coinbase.SendEmail do
   def get_alert_list(threshold) do
 
     query = Ecto.Query.from c_a in Coin_alert,
-                 where: c_a.above == ^threshold,
-                 select: c_a
+                            where: c_a.above == ^threshold,
+                            select: c_a
 
     res = Repo.all(query)
           |> Repo.preload(:user)
@@ -100,9 +134,8 @@ defmodule Coinbase.SendEmail do
     Process.send_after self(), :update, interval
   end
 
-  def send_mail(email_addres) do
-    email_address ="vipulsharma018@gmail.com"
-    UserEmail.welcome(email_address)
+  def send_mail(email_address,header,body) do
+    UserEmail.welcome(email_address,header,body)
     |> SendgridMailer.deliver
     |> case do
          {:ok, _result} ->
