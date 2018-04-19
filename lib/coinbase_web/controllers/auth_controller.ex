@@ -43,8 +43,8 @@ defmodule CoinbaseWeb.AuthController do
      |> put_session(:access_token, client.token.access_token)
      |> redirect(to: "/")
 
-     p = Comeonin.Argon2.hashpwsalt(user.name <> "1234")
-     user_params = %{name: user.name, email: user.email, password: user.name <> "1234", password_confirmation: user.name <> "1234", money: 10000.0,}
+
+     user_params = %{name: user.name, email: user.email, password: user.email <> "40$96", password_confirmation: user.email <> "40$96", money: 10000.0,}
      IO.puts("++++++++++++++++++++++++++++++")
      IO.inspect(user_params)
      IO.puts("++++++++++++++++++++++++++++++")
@@ -71,13 +71,13 @@ defmodule CoinbaseWeb.AuthController do
 
    defp insert_or_update_user(changeset) do
     # changes is a property of changeset
-
-      IO.inspect(changeset)
+    IO.inspect(changeset)
+    case Repo.get_by(User, email: changeset.changes.email) do
+      nil ->
         Repo.insert(changeset)
-
-
-      #adding :ok atom as for insert we are returned a tuple
-
+      user ->
+        {:ok, user} #adding :ok atom as for insert we are returned a tuple
+    end
   end
 
     defp authorize_url!("github"),   do: GitHub.authorize_url!

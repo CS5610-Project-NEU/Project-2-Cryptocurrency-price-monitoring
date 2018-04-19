@@ -103,6 +103,8 @@ function Home(props) {
      </div>
  }
 
+
+
  return <div>
 
      <div className={"container"} style={{position:"relative",top:"100px"}}>
@@ -129,9 +131,7 @@ function Home(props) {
                            options ={get_option('hour')}
                      />
 
-                     {props.token?
-                     <a href="/dashboard"  class="btn btn-outline-dark nav-link">Buy Bitcoin</a> :
-                         <a href="/signin"  class="btn btn-outline-dark nav-link">Buy Bitcoin</a>}
+
 
                  </div>
              </div>
@@ -147,9 +147,6 @@ function Home(props) {
                            options ={get_option('hour')}
                      />
 
-                     {props.token?
-                         <a to="/dashboard" href="#" class="btn btn-outline-dark">Buy Ethereum</a> :
-                         <a to="/signup" href="#" class="btn btn-outline-dark">Buy Ethereum</a>}
                  </div>
              </div>
 
@@ -164,9 +161,6 @@ function Home(props) {
                            options ={get_option('hour')}
                      />
 
-                     {props.token?
-                         <a to="/dashboard" href="#" class="btn btn-outline-dark">Buy Litcoin</a> :
-                         <a to="/signup" href="#" class="btn btn-outline-dark">Buy Litcoin</a>}
                  </div>
              </div>
 
@@ -181,9 +175,7 @@ function Home(props) {
                            height={50}
                            options ={get_option('hour')}
                      />
-                     {props.token?
-                         <a to="/dashboard" href="#" class="btn btn-outline-dark">Buy Bitcoin Cash</a> :
-                         <a to="/signup" href="#" class="btn btn-outline-dark">Buy Bitcoin Cash</a>}
+
                  </div>
              </div>
 
