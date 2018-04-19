@@ -31,6 +31,21 @@ register_user(data) {
   });
 }
 
+request_users() {
+  $.ajax("/api/v1/users", {
+    method: "get",
+    dataType: "json",
+    contentType: "application/json; charset=UTF-8",
+    success: (resp) => {
+      store.dispatch({
+        type: 'USERS_LIST',
+        users: resp.data,
+      });
+    },
+  });
+}
+
+
 submit_signin(data) {
     $.ajax("/api/v1/token", {
       method: "post",

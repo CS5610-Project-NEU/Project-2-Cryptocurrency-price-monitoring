@@ -24,6 +24,7 @@ defmodule CoinbaseWeb.Router do
     post "/send", PageController, :send
     get "/users", PageController, :index
     get "/dashboard", PageController, :index
+    resources "/users", UserController
   end
 
   scope "/auth", CoinbaseWeb do

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import Nav from './nav';
 
@@ -10,6 +10,8 @@ import Home from './home'
 import Signin from './signin'
 
 import Signup from './signup'
+
+import Users from './users';
 
 import Charts from './charts'
 
@@ -28,44 +30,56 @@ export default function coinprice_init(store) {
 let Coinprice = connect((state) => state)((props) => {
 
     let height = $(document).height();
-
+let valid_user = props.token;
     return (
         <Router>
             <div style={{backgroundColor:"#dfe4ea",height:height}}>
+            <Nav/>
                 <Route path="/" exact={true} render={() =>
                     <div>
-                         <Nav/>
+
                         <Home/>
                     </div>
                 } />
 
                 <Route path="/signin" exact={true} render={() =>
-                    <div>
-                        <Nav/>
-                        <Signin/>
-                    </div>
+                   valid_user? (<div><Redirect to="/" /> </div>) :
+                   (  <div>
+                       <Signin />
+                     </div>)
+
                 } />
 
                 <Route path="/signup" exact={true} render={() =>
                     <div>
-                        <Nav/>
+
                         <Signup/>
                     </div>
                 } />
 
-                <Route path="/charts" exact={true} render={() =>
+                <Route path="/users" exact={true} render={() =>
                     <div>
-                        <Nav/>
-                        <Charts/>
+
+                        <Users/>
                     </div>
+                } />
+
+                <Route path="/charts" exact={true} render={() =>
+
+
+                    valid_user?
+                    (  <div>
+                        <Charts />
+                      </div>) :  (<div><Redirect to="/" /> </div>)
+
                 } />
 
 
                 <Route path="/dashboard" exact={true} render={() =>
-                    <div>
-                        <Nav/>
-                        <Dashboard/>
-                    </div>
+                    valid_user?
+                    (  <div>
+                        <Dashboard />
+                      </div>) :  (<div><Redirect to="/" /> </div>)
                 } />
             </div>
         </Router>

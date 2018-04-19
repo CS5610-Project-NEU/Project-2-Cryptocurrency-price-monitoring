@@ -24,7 +24,7 @@ let User = ((props) => {
 
 
 function Users(props) {
-  let users_list = _.map(props.tasks, (pp) => <User key={pp.id} user={pp}/>);
+  let users_list = _.map(props.users, (pp) => <User key={pp.id} user={pp}/>);
   return <div className="row dcenter">
   <table className="table table-hover">
     <thead>
@@ -40,9 +40,10 @@ function Users(props) {
 }
 
 function state2props(state) {
+  console.log("statttttt",state);
   return {
     token: state.token,
-    tasks: state.users,
+    users: state.users,
   };
 }
 export default connect(state2props,null,null,{pure: false})(Users);
