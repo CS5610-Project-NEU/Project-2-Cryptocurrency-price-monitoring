@@ -42,33 +42,39 @@ console.log("ev is ")
       <div className="container text-center">
       <div className="p-4">
       <FormGroup className="row">
-        <Label for="email" className="col-md-1"><b>Email</b></Label>
-        <Input type="email" className="form-control col-md-6" name="email" placeholder="abc@example.com" value={props.form.email} onChange={update}/>
+        <Label for="email" className="col-md-2 text-right"><b>Email</b></Label>
+        <Input type="email" className="form-control col-md-6 home" name="email" placeholder="abc@example.com" value={props.form.email} onChange={update}/>
         <span>{props.errors.email[0]}</span>
       </FormGroup>
       <FormGroup className="row">
-        <Label for="name" className="col-md-1"><b>Name</b></Label>
-        <Input className="form-control col-md-6" name="name" value={props.form.name} onChange={update}/>
+        <Label for="name" className="col-md-2 text-right"><b>Name</b></Label>
+        <Input className="form-control col-md-6 home" name="name" value={props.form.name} onChange={update}/>
         <span>{props.errors.name[0]}</span>
       </FormGroup>
       <FormGroup className="row">
-        <Label for="money" className="col-md-1"><b>Money</b></Label>
-        <Input className="form-control col-md-6" name="money" value={props.form.money} onChange={update}/>
+        <Label for="money" className="col-md-2 text-right"><b>Money</b></Label>
+        <Input className="form-control col-md-6 home" name="money" value={props.form.money} placeholder="in USD $" onChange={update}/>
         <span>{props.errors.money[0]}</span>
       </FormGroup>
       <FormGroup className="row">
-        <Label for="password" className="col-md-1"><b>Password</b></Label>
-        <Input type="password" className="form-control col-md-6" name="password" value={props.form.password} onChange={update}/>
+        <Label for="password" className="col-md-2 text-right"><b>Password</b></Label>
+        <Input type="password" className="form-control col-md-6 home" name="password" value={props.form.password} onChange={update}/>
         <span>{props.errors.password[0]}</span>
       </FormGroup>
       <FormGroup className="row">
-        <Label for="password_confirmation" className="col-md-1"><b>Confirm Password</b></Label>
-        <Input type="password" className="form-control col-md-6" name="password_confirmation" value={props.form.password_confirmation} onChange={update}/>
+        <Label for="password_confirmation" className="col-md-2 text-right"><b>Confirm Password</b></Label>
+        <Input type="password" className="form-control col-md-6 home" name="password_confirmation" value={props.form.password_confirmation} onChange={update}/>
         <span>{props.errors.password_confirmation[0]}</span>
       </FormGroup>
       </div>
-      <Button className="btn btn-primary" id="register" onClick={submit}>Register</Button>&nbsp;&nbsp;&nbsp;
-      <Button className="btn btn-primary" id ="clear"onClick={clearuserdata}>Clear</Button>
+      <div className="row offset-md-5">
+        <div>
+          <Button className="btn btn-warning" id="register" onClick={submit}>Register</Button>&nbsp;&nbsp;&nbsp;
+        </div>
+        <div className="offset-md-1">
+          <Button className="btn btn-danger" id ="clear"onClick={clearuserdata}>Clear</Button>
+        </div>
+      </div>
       </div>
 
     )

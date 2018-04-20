@@ -1,3 +1,50 @@
 /* This file is for your main application css. */
 
 @import "bootstrap";
+
+body{
+  font-family: Arial;
+  color: white;
+  height: 100%;
+  width: 100%;
+  background-color: #000000;
+  background-image: url("/images/shattered-dark.png");
+}
+
+.home
+{
+  background:rgba(0,0,0,.2);
+}
+
+.navbar
+{
+background-image: linear-gradient(-225deg, #65379B 0%, #886AEA 53%, #6457C6 100%);
+}
+
+.nav-link
+{
+  color:white;
+  font-weight: bold;
+}
+
+.chart
+{
+  position:"relative";
+  top:"20px";
+  background:rgba(0,0,0,.4);
+  color: white;
+}
+
+.alert {
+  color: tomato;
+  font-weight: bold;
+}
+
+.amount {
+  color: dodgerblue;
+  font-weight: bold;
+}
+
+.text{
+  color: white;
+}

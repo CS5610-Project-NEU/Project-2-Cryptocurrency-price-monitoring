@@ -106,7 +106,7 @@ function Home(props) {
 
  return <div>
 
-     <div className={"container"} style={{position:"relative",top:"100px"}}>
+     <div className={"container p-4"} style={{position:"relative",top:"100px"}}>
          <div className={"row justify-content-md-center"}>
          <h1>Buy and sell digital currency</h1>
          </div>
@@ -120,8 +120,8 @@ function Home(props) {
      <div className={"container"} style={{position:"relative",top:"160px"}}>
 
      <div className={"row justify-content-md-center"}>
-         <div className={"col-3 "}>
-             <div class="card border border-warning">
+         <div className={"col-md-3 col-sm-12 p-2"}>
+             <div class="home card border border-warning">
                  <div class="card-body">
                      {get_info("Bitcoin",props.bitcoin_curr_coinbase,props.bitcoin_day_coinbase)}
                      <Line data={get_datasets(props.bitcoin_day_coinbase,"bitcoin","#f1c40f")}
@@ -135,9 +135,9 @@ function Home(props) {
                  </div>
              </div>
          </div>
-         <div className={"col-3 "}>
+         <div className={"col-md-3 col-sm-12 p-2"}>
 
-             <div class="card border border-danger">
+             <div class="home card border border-danger">
                  <div class="card-body">
                      {get_info("Ethereum",props.ethereum_curr_coinbase,props.ethereum_day_coinbase)}
                      <Line data={get_datasets(props.ethereum_day_coinbase,"ethereum","#e74c3c")}
@@ -150,8 +150,8 @@ function Home(props) {
              </div>
 
          </div>
-         <div className={"col-3"}>
-             <div class="card border-success">
+         <div className={"col-md-3 col-sm-12 p-2"}>
+             <div class="home card border-success">
                  <div class="card-body">
                      {get_info("Litcoin",props.litcoin_curr_coinbase,props.litcoin_day_coinbase)}
                      <Line data={get_datasets(props.litcoin_day_coinbase,'litcoin',"#27ae60")}
@@ -165,8 +165,8 @@ function Home(props) {
 
          </div>
 
-         <div className={"col-3"}>
-             <div class="card border-primary">
+         <div className={"col-md-3 col-sm-12 p-2"}>
+             <div class="home card border-primary">
                  <div class="card-body">
                      {get_info("BitcoinCash",props.cash_curr_coinbase,props.cash_day_coinbase)}
                      <Line data={get_datasets(props.cash_day_coinbase,"bitcoinCash","#2980b9")}

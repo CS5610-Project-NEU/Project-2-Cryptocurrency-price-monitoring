@@ -35,7 +35,7 @@ let valid_user = props.token || token || tokengoogle;
 
     return (
         <Router>
-            <div style={{backgroundColor:"#dfe4ea",height:height}}>
+            <div style={{height:height}}>
             <Nav/>
                 <Route path="/" exact={true} render={() =>
                     <div>

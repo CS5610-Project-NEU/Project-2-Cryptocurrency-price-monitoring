@@ -34,7 +34,7 @@ class Nav extends React.Component{
             window.localStorage.setItem("user_id", this.props.token.user_name);
             console.log("user is" + this.props.token.user_name);
           }
-          
+
             function remove_token(){
                 let act = {
                     type: 'REMOVE_TOKEN'
@@ -98,7 +98,7 @@ class Nav extends React.Component{
                 </Collapse>
 
                     : ""}
-                <nav className="navbar navbar-dark bg-dark">
+                <nav className="navbar navbar-light">
 
                     {this.props.token?
                 <NavItem>

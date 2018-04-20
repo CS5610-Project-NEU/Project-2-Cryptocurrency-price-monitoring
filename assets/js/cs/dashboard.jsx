@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
         this.get_user_amounts = this.get_user_amounts.bind(this)
         this.get_curr_prices = this.get_curr_prices.bind(this)
     }
-    
+
 
     get_user_amounts(){
 
@@ -240,16 +240,16 @@ class Dashboard extends React.Component {
                 {
                     data: infodata,
                     backgroundColor: [
-                        "#f9ca24",
-                        "#eb4d4b",
-                        "#6ab04c",
-                        "#686de0"
+                        "#00FF00",
+                        "#00BFFF",
+                        "#FFFF00",
+                        "#E50000"
                     ],
                     hoverBackgroundColor: [
-                        "#ffeaa7",
-                        "#e66767",
-                        "#A3CB38",
-                        "#487eb0"
+                        "#008000",
+                        "#1E90FF",
+                        "#999900",
+                        "#800000"
                     ]
                 }]
         };
@@ -267,7 +267,7 @@ class Dashboard extends React.Component {
                 above_name = "Below"
             }
             let name = get_name(x.name)
-            return <h6>{name + ": " + x.amount} <Badge color="secondary">{above_name}</Badge></h6>
+            return <h6>{name + ": " + x.amount} <Badge color="badge-danger">{above_name}</Badge></h6>
 
         }
 
@@ -278,12 +278,12 @@ class Dashboard extends React.Component {
         let alerts_show = this.props.token.alerts.map(x => get_alert(x))
 
 
-        return <div class="container-fluid">
+        return <div class="container-fluid p-4">
             <div className={"row"}>
-                <div className={"col"}>
-                    <div class="card border border-dark">
-                        <div class="card-header">
-                            COIN YOU OWN (USD)
+                <div className={"col p-2"}>
+                    <div class="chart card border border-dark">
+                        <div class="card-header text-center">
+                            <h2><b>Cryptocurrency you Own (USD)</b></h2>
                         </div>
                         <div class="card-body">
                             <Doughnut
@@ -294,10 +294,10 @@ class Dashboard extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className={"col"}>
-                    <div class="card border border-dark">
-                        <div class="card-header">
-                            Buy/Sell Your Coin (USD)
+                <div className={"col p-2"}>
+                    <div class="chart card border border-dark">
+                        <div class="card-header text-center">
+                            <h2><b> Buy/Sell Your Coin (USD) </b></h2>
                         </div>
         <div class="card-body">
                                 <FormGroup>
@@ -324,7 +324,7 @@ class Dashboard extends React.Component {
         </FormGroup>
 
 
-        <Button onClick={this.transaction.bind(this)}>Submit</Button>
+        <Button onClick={this.transaction.bind(this)} className="btn btn-warning">Submit</Button>
         </div>
         </div>
 
@@ -332,69 +332,54 @@ class Dashboard extends React.Component {
 
         </div>
         <div className={"row"}>
-        <div className={"col"}>
-        <div class="card border border-dark">
-        <div class="card-header">
-        Subscribe/Cancel Notification, Above or Below Threshold
-        </div>
-        <div class="card-body">
-        <FormGroup>
-        <Label for="set_alert">Select Action</Label>
-        <Input type="select" name="set_alert"
-        onChange={this.update} value={this.state.set_alert}>
-        <option key={"above"} value="above">Above</option>
-        <option key={"below"} value="below">Below</option>
-        <option key={"cancel"} value="cancel">Cancel</option>
-        </Input>
-        </FormGroup>
-        <FormGroup>
-        <Label for="set_alert_coin">Choose a Coin</Label>
-        <Input type="select" name="set_alert_coin"
-        onChange={this.update} value={this.state.set_alert_coin}>
-        { coins }
-                                </Input>
-                            </FormGroup>
+          <div className={"col p-2"}>
+            <div class="chart card border border-dark">
+              <div class="card-header text-center">
+                <h2><b>Subscribe/Remove Notification(s), Above or Below Threshold</b></h2>
+              </div>
+              <div class="card-body">
+                <FormGroup>
+                  <Label for="set_alert">Select Action</Label>
+                  <Input type="select" name="set_alert"
+                    onChange={this.update} value={this.state.set_alert}>
+                    <option key={"above"} value="above">Above</option>
+                    <option key={"below"} value="below">Below</option>
+                    <option key={"cancel"} value="cancel">Remove</option>
+                  </Input>
+                </FormGroup>
+                <FormGroup>
+                  <Label for="set_alert_coin">Choose a Coin</Label>
+                  <Input type="select" name="set_alert_coin"
+                          onChange={this.update} value={this.state.set_alert_coin}>
+                          { coins }
+                  </Input>
+                </FormGroup>
 
-                            <FormGroup>
-                                <Label for="set_alert_amount">Threshold</Label>
-                                <Input type="text" pattern="[0-9]*" name="set_alert_amount"
-                                       onChange={this.update} value={this.state.set_alert_amount} />
-
-                            </FormGroup>
-
-
-                            <Button onClick={this.set_alert.bind(this)} >Submit</Button>
-
-                        </div>
-        </div>
-
-
-        </div>
-
-        <div className={"col"}>
-
-
-            <div class="card border border-dark">
-                <div class="card-header">
-                    General Information
-                </div>
-        <div class="card-body">
-                    <h2>Alerts</h2>
-                    {alerts_show}
-                    <h2>Coins Amount</h2>
-                    {coins_show}
-
-
-                </div>
+                <FormGroup>
+                  <Label for="set_alert_amount">Threshold</Label>
+                  <Input type="text" pattern="[0-9]*" name="set_alert_amount"
+                        onChange={this.update} value={this.state.set_alert_amount} />
+                </FormGroup>
+               <Button onClick={this.set_alert.bind(this)} className="btn btn-warning" >Submit</Button>
+             </div>
+           </div>
+          </div>
+          <div className={"col p-2"}>
+            <div class="chart card border border-dark">
+              <div class="card-header text-center">
+                <h2><b> General Information </b></h2>
+              </div>
+              <div class="card-body">
+                <h3 className="alert">Alerts</h3>
+                {alerts_show}
+                <br/>
+                <h3 className="amount">Cryptocurrency You Own</h3>
+                {coins_show}
+              </div>
             </div>
-
+          </div>
         </div>
-
-        </div>
-
-        </div>
-
-
+      </div>
     }
 }
 

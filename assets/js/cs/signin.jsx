@@ -49,26 +49,29 @@ function Signin(props) {
 
       <div className="container text-center">
       <div className="p-4">
-   <Form>
-     <FormGroup className="row">
-       <Label for="email" className="col-md-1"><b>Email</b></Label>
-       <Input type="email" name="email" className="form-control col-md-6" placeholder="abc@example.com"
+   <Form className="p-4">
+     <FormGroup className="row p-2">
+       <Label for="email" className="col-md-2 text-right"><b>Email</b></Label>
+       <Input type="email" name="email" className="form-control col-md-4 home" placeholder="alice@example.com"
               value={props.signin.email} onChange={update} />
      </FormGroup>
      <FormGroup className="row">
-     <Label for="pass" className="col-md-1"><b>Password</b></Label>
-       <Input type="password" name="pass" className="form-control col-md-6"
+     <Label for="pass" className="col-md-2 text-right"><b>Password</b></Label>
+       <Input type="password" name="pass" className="form-control col-md-4 home"
               value={props.signin.pass} onChange={update} />
      </FormGroup>
-     <span className="span-padding">{props.user_errors.signin}</span><br/>
-     <Button onClick={create_token} id="signin" className="btn btn-primary mb1 bg-green">Log In</Button>
+     <div className = "row text-center offset-md-3">
+     <Button onClick={create_token} id="signin" className="btn btn-warning">Log In</Button>
+     &nbsp; &nbsp;&nbsp;&nbsp;
      <GoogleLogin
-         className="loginBtn loginBtn--google"
+         className="btn btn-danger"
         clientId="317561470256-ucp1c7ndasd91qvpmterg15940s9phhc.apps.googleusercontent.com"
         buttonText="Google Sign In"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
         onClick={submit}/>
+      </div>
+      <br/><br/><span className="span-padding">{props.user_errors.signin}</span>
    </Form>
    </div>
 

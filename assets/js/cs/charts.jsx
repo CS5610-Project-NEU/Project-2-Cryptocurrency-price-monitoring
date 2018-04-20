@@ -69,8 +69,8 @@ class Charts extends React.Component{
             curr_hour = this.props.bitcoin_hour_coinbase;
             curr_year = this.props.bitcoin_year_coinbase;
             curr_week = this.props.bitcoin_week_coinbase;
-            color = "#FFC312";
-            background = "#ffeaa7";
+            color = "#cc3300";
+            background = "#ffcc00";
         }
         else if (this.state.sel_coin === "ethereum"){
             sel_ethereum = "nav-link ";
@@ -106,7 +106,7 @@ class Charts extends React.Component{
             curr_year = this.props.cash_year_coinbase;
             curr_week = this.props.cash_week_coinbase;
             color = "#192a56";
-            background ="#487eb0";
+            background ="#0033cc";
         }
 
         function get_diff(prices) {
@@ -246,8 +246,8 @@ class Charts extends React.Component{
         }
 
 
-        return <div>
-            <div className={"container border border-dark"} style={{position:"relative",top:"20px",backgroundColor:"#ffffff"}}>
+        return <div className={"p-4"}>
+            <div className={"container-fluid border border-dark chart"}>
 
                 <div class="row justify-content-between">
                     <div class="col-8">
@@ -294,18 +294,18 @@ class Charts extends React.Component{
                 <div class="card-body">
                     <div className={"row"}>
 
-                        <div className={"col"} style={{borderRight:"1px solid",color:"#222f3e"}}>
+                        <div className={"col"} style={{borderRight:"1px solid",color:"#ffffff"}}>
 
                             <h1 className={"text-center"}>${curr_price}</h1>
                             <h5 className={"text-center"} style={{color:"#576574"}}>{coin_name}</h5>
                         </div>
 
-                        <div className={"col"} style={{borderRight:"1px solid",color:"#222f3e"}}>
+                        <div className={"col"} style={{borderRight:"1px solid",color:"#ffffff"}}>
                             <h1 className={"text-center"}>{diff}</h1>
                             <h5 className={"text-center"} style={{color:"#576574"}}>{sel_time} (USD)</h5>
                         </div>
 
-                        <div className={"col"} style={{color:"#222f3e"}}>
+                        <div className={"col"} style={{color:"#ffffff"}}>
                             <h1 className={"text-center"}>{perc}</h1>
                             <h5 className={"text-center"} style={{color:"#576574"}}>{sel_time} (%)</h5>
                         </div>
@@ -371,5 +371,3 @@ function state2props(state) {
 
 
 export default connect(state2props)(Charts);
-
-
