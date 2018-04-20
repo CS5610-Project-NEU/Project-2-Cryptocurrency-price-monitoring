@@ -14,20 +14,21 @@ class Dashboard extends React.Component {
     constructor(props) {
         super(props);
 
+        let coins_list = api.get_coins();
 
         this.state = {
             sell_buy: "sell",
-            sell_buy_coin: parseInt(props.coins_list[0].id),
+            sell_buy_coin: parseInt(coins_list[0].id),
             sell_buy_amount: 0,
             set_alert: "above",
-            set_alert_coin: parseInt(props.coins_list[0].id),
+            set_alert_coin: parseInt(coins_list[0].id),
             set_alert_amount: 0,
-            //user_amounts: user_amounts,
+            coins_list: coins_list,
 
         };
 
         this.update = this.update.bind(this);
-        this.get_user_amounts = this.get_user_amounts.bind(this)
+        this.get_user_amounts = this.get_user_amounts.bind(this);
         this.get_curr_prices = this.get_curr_prices.bind(this)
     }
 
@@ -35,27 +36,27 @@ class Dashboard extends React.Component {
     get_user_amounts(){
 
 
-        console.log("coin list ",this.props.coins_list); // key -> id .... name -> coin name list
+        console.log("coin list ",this.state.coins_list); // key -> id .... name -> coin name list
         // user has list of coin name -> coin name .... amount ->  list
 
 
-        console.log(this.props.coins_list.length);
+        console.log(this.state.coins_list.length);
 
 
 
         console.log("own coin list ",this.props.coins);
 
         let user_amounts = {};
-        for (let i = 0; i < this.props.coins_list.length; i++) {
+        for (let i = 0; i < this.state.coins_list.length; i++) {
             let data = {};
-            data[this.props.coins_list[i].id] = 0;
+            data[this.state.coins_list[i].id] = 0;
 
             for (let j=0; j < this.props.coins.length; j ++ ){
 
-                if (this.props.coins_list[i].name === this.props.coins[j].name){
+                if (this.state.coins_list[i].name === this.props.coins[j].name){
                     console.log(this.props.coins[j].amount);
 
-                    data[this.props.coins_list[i].id] = parseInt(this.props.coins[j].amount)
+                    data[this.state.coins_list[i].id] = parseInt(this.props.coins[j].amount)
 
                 }
 
@@ -71,24 +72,24 @@ class Dashboard extends React.Component {
 
     get_curr_prices(){
         let curr_prices = {};
-        for (let i = 0; i < this.props.coins_list.length; i++) {
+        for (let i = 0; i < this.state.coins_list.length; i++) {
             let data = {};
-            if  (this.props.coins_list[i].name === "bitcoin"){
+            if  (this.state.coins_list[i].name === "bitcoin"){
 
-                data[this.props.coins_list[i].id] = this.props.bitcoin_curr_coinbase;
+                data[this.state.coins_list[i].id] = this.props.bitcoin_curr_coinbase;
             }
 
-            else if (this.props.coins_list[i].name === "ethereum"){
-                data[this.props.coins_list[i].id] = this.props.ethereum_curr_coinbase;
+            else if (this.state.coins_list[i].name === "ethereum"){
+                data[this.state.coins_list[i].id] = this.props.ethereum_curr_coinbase;
 
 
             }
-            else if (this.props.coins_list[i].name === "litcoin"){
-                data[this.props.coins_list[i].id] = this.props.litcoin_curr_coinbase;
+            else if (this.state.coins_list[i].name === "litcoin"){
+                data[this.state.coins_list[i].id] = this.props.litcoin_curr_coinbase;
             }
 
             else {
-                data[this.props.coins_list[i].id] = this.props.cash_curr_coinbase;
+                data[this.state.coins_list[i].id] = this.props.cash_curr_coinbase;
             }
 
 
@@ -272,7 +273,7 @@ class Dashboard extends React.Component {
         }
 
 
-        let coins = this.props.coins_list.map(x => <option key={x.id} value={x.id}>{get_name(x.name)}</option>);
+        let coins = this.state.coins_list.map(x => <option key={x.id} value={x.id}>{get_name(x.name)}</option>);
 
         let coins_show = this.props.token.coins.map(x => <h6>{get_name(x.name)}: {x.amount}</h6>)
         let alerts_show = this.props.token.alerts.map(x => get_alert(x))
@@ -393,7 +394,7 @@ function state2props(state) {
 
         coins : state.token.coins,
         token: state.token,
-        coins_list: state.coins_list,
+     //   coins_list: state.coins_list,
         user_form: state.user_form,
         bitcoin_curr_coinbase:state.bitcoin_curr_coinbase,
 

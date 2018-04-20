@@ -69,8 +69,8 @@ class Charts extends React.Component{
             curr_hour = this.props.bitcoin_hour_coinbase;
             curr_year = this.props.bitcoin_year_coinbase;
             curr_week = this.props.bitcoin_week_coinbase;
-            color = "#cc3300";
-            background = "#ffcc00";
+            color = "#ffcc00";
+            background = "#ffeaa7";
         }
         else if (this.state.sel_coin === "ethereum"){
             sel_ethereum = "nav-link ";

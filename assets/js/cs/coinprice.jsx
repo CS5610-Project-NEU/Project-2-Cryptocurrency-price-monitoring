@@ -72,7 +72,6 @@ let valid_user = props.token || token || tokengoogle;
 
                 } />
 
-
                 <Route path="/dashboard" exact={true} render={() =>
                     valid_user?
                     (  <div>

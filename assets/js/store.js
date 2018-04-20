@@ -335,16 +335,21 @@ function user_errors(state = default_user_errors, action) {
  }
 }
 
-function coins_list(state = [], action){
-    switch (action.type){
-    case 'COINS_LIST':
-        return action.data;
-    default:
-        return state;
-    }
-}
+//
+// let default_coins_list = [];
+//
+// function coins_list(state = default_coins_list, action){
+//     switch (action.type){
+//     case 'COINS_LIST':
+//         return action.data;
+//     default:
+//         return state;
+//     }
+// }
 
-function token(state = null, action) {
+let default_token = JSON.parse(window.localStorage.getItem("user_token"));
+
+function token(state = default_token, action) {
   switch (action.type) {
     case 'SET_TOKEN':
       return action.token;
@@ -387,11 +392,13 @@ function root_reducer(state0, action) {
             ethereum_curr_coinbase,ethereum_month_coinbase,ethereum_week_coinbase,ethereum_day_coinbase,ethereum_hour_coinbase,ethereum_year_coinbase,
             litcoin_curr_coinbase,litcoin_month_coinbase,litcoin_week_coinbase,litcoin_day_coinbase,litcoin_hour_coinbase,litcoin_year_coinbase,
             cash_curr_coinbase,cash_month_coinbase,cash_week_coinbase,cash_day_coinbase,cash_hour_coinbase,cash_year_coinbase,
-            coins_list
+         //   coins_list
         });
     let state1 = reducer(state0, action);
    /// console.log("state1", state1);
+    console.log(state1.bitcoin_curr_coinbase);
     console.log(state1.token);
+   // console.log(state1.coins_list);
     return deepFreeze(state1);
 };
 

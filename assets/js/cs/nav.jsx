@@ -3,6 +3,7 @@ import { NavItem, Collapse } from 'reactstrap';
 
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import api from "../api";
 
 
 
@@ -30,7 +31,11 @@ class Nav extends React.Component{
 
         let Session = connect(({token}) => {return {token};})((props) => {
           if(props.token){
+
+
             window.localStorage.setItem("token", props.token.token);
+
+            window.localStorage.setItem("user_token", JSON.stringify(props.token));
             window.localStorage.setItem("user_id", this.props.token.user_name);
             console.log("user is" + this.props.token.user_name);
           }
@@ -98,12 +103,13 @@ class Nav extends React.Component{
                 </Collapse>
 
                     : ""}
-                <nav className="navbar navbar-light">
+                <nav className="navbar navbar-light" style={{height: "45px"}}>
+                    <div>
 
                     {this.props.token?
                 <NavItem>
 
-                    <div className="border border-white">
+                    <div className="border border-dark" style={{position:"relative",top:"-10px"}}>
                         <button className="navbar-toggler" type="button" onClick={this.toggleNavbar}>
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -112,7 +118,7 @@ class Nav extends React.Component{
                 </NavItem>
                         : ""}
                 <NavItem>
-                    <NavLink to="/" href="#"  className="nav-link">
+                    <NavLink to="/" href="#"  className="nav-link" style={{position:"relative",top:"-10px"}}>
                               <span className="navbar-brand">
                               <img src="/images/coin.svg" width="30" height="30" className="d-inline-block align-top" alt=""></img>
                             WebCoin
@@ -120,6 +126,8 @@ class Nav extends React.Component{
                     </NavLink>
 
                 </NavItem>
+
+                    </div>
 
                 <ul className="navbar-nav mr-auto">
 
@@ -155,7 +163,8 @@ class Nav extends React.Component{
 function state2props(state) {
   return {
       token: state.token,
-      user_form: state.user_form
+      user_form: state.user_form,
+   //   coins_list : state.coins_list
   };
 }
 

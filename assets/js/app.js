@@ -41,7 +41,9 @@ $(function() {
     default_channel.join();
 
     default_channel.on("new_state", datas => {
-        api.get_coins();
+      // let test = api.get_coins();
+
+      // console.log("cicicicciciciciciiciciicicicicic",test);
         update_store(datas)
 });
 

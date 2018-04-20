@@ -116,17 +116,19 @@ submit_signin(data) {
 
 
     get_coins(){
+
+    let coins = [];
         $.ajax("/api/v1/coins", {
+            async: false,
             method: "get",
             dataType: "json",
             contentType: "application/json; charset=UTF-8",
             success: (resp) => {
-                store.dispatch({
-                    type: 'COINS_LIST',
-                    data: resp.data,
-                });
+                coins = resp.data;
             }
         });
+
+    return  coins
     }
 }
 
