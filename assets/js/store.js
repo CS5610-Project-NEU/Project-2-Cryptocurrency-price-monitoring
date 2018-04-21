@@ -396,11 +396,10 @@ function root_reducer(state0, action) {
         });
     let state1 = reducer(state0, action);
    /// console.log("state1", state1);
-    console.log(state1.bitcoin_curr_coinbase);
     console.log(state1.token);
    // console.log(state1.coins_list);
     return deepFreeze(state1);
-};
+}
 
 let store = createStore(root_reducer);
 export default store;

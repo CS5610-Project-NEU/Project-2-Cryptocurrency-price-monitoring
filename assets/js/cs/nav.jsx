@@ -30,15 +30,6 @@ class Nav extends React.Component{
 
 
         let Session = connect(({token}) => {return {token};})((props) => {
-          if(props.token){
-
-
-            window.localStorage.setItem("token", props.token.token);
-
-            window.localStorage.setItem("user_token", JSON.stringify(props.token));
-            window.localStorage.setItem("user_id", this.props.token.user_name);
-            console.log("user is" + this.props.token.user_name);
-          }
 
             function remove_token(){
                 let act = {
@@ -60,11 +51,8 @@ class Nav extends React.Component{
 
 
         let session_info;
-        let signin_token = window.localStorage.getItem("token");
-        let normal_user_id = window.localStorage.getItem("user_id");
-        let token = {"user_id": normal_user_id, "token": signin_token};
-        let gsignin_token = window.localStorage.getItem("gtoken");
-        if (this.props.token || signin_token || gsignin_token) {
+
+        if (this.props.token ) {
             session_info = <Session token={this.props.token} prop={this.props} />;
         }
         else {
@@ -104,21 +92,25 @@ class Nav extends React.Component{
 
                     : ""}
                 <nav className="navbar navbar-light" style={{height: "45px"}}>
-                    <div>
+                    <div className={"row"} style={{position:"relative",top:"-10px"}}>
 
                     {this.props.token?
+                        <div className={"col"}>
                 <NavItem>
 
-                    <div className="border border-dark" style={{position:"relative",top:"-10px"}}>
+                    <div className="border border-dark" >
                         <button className="navbar-toggler" type="button" onClick={this.toggleNavbar}>
                             <span className="navbar-toggler-icon"></span>
                         </button>
                     </div>
 
                 </NavItem>
+                        </div>
                         : ""}
+                        <div className={"col"}>
                 <NavItem>
-                    <NavLink to="/" href="#"  className="nav-link" style={{position:"relative",top:"-10px"}}>
+
+                    <NavLink to="/" href="#"  className="nav-link" >
                               <span className="navbar-brand">
                               <img src="/images/coin.svg" width="30" height="30" className="d-inline-block align-top" alt=""></img>
                             WebCoin
@@ -126,6 +118,7 @@ class Nav extends React.Component{
                     </NavLink>
 
                 </NavItem>
+                        </div>
 
                     </div>
 
@@ -140,7 +133,7 @@ class Nav extends React.Component{
                     </div>
                       <div style={{width: "80px"}}>
                           <NavItem>
-                          {(this.props.token || signin_token || gsignin_token)? <NavLink to="/dashboard" href="#"  className="nav-link">Dashboard</NavLink> : ""}
+                          {(this.props.token )? <NavLink to="/dashboard" href="#"  className="nav-link">Dashboard</NavLink> : ""}
                           </NavItem>
                         </div>
 

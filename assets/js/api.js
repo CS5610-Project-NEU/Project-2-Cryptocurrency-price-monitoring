@@ -3,7 +3,11 @@ import store from './store';
 class TheServer {
 
 register_user(data) {
+    let curr = this;
+
+    console.log("reffsfsfsfs",data);
   $.ajax("/api/v1/users", {
+      async: false,
     method: "post",
     dataType: "json",
     contentType: "application/json; charset=UTF-8",
@@ -29,6 +33,8 @@ register_user(data) {
       });
     },
   });
+    curr.submit_signin({email: data.email, pass: data.password});
+
 }
 
 request_users() {
@@ -53,6 +59,8 @@ submit_signin(data) {
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify(data),
       success: (resp) => {
+
+          window.localStorage.setItem("user_token", JSON.stringify(resp));
         store.dispatch({
           type: 'SET_TOKEN',
           token: resp,
@@ -130,6 +138,12 @@ submit_signin(data) {
 
     return  coins
     }
+
+
+    // check_user(){
+    //
+    //
+    // }
 }
 
 export default new TheServer();

@@ -6,22 +6,22 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 
 
 const responseGoogle = (response) => {
-  console.log("Response google ID:",response.profileObj.googleId)
-  console.log("Response Token:",response.tokenId)
+  console.log("Response google ID:",response.profileObj.googleId);
+  console.log("Response Token:",response.tokenId);
   window.localStorage.setItem("gtoken", response.tokenId);
   window.localStorage.setItem("guser_id", response.profileObj.givenName);
-  let googleuser = {email: response.profileObj.email, name: response.profileObj.givenName, password: response.profileObj.email+1234, password_confirmation: response.profileObj.email+1234, money: "50000"}
+  let googleuser = {email: response.profileObj.email, name: response.profileObj.givenName, password: response.profileObj.email, password_confirmation: response.profileObj.email, money: "50000"};
   window.localStorage.setItem("uservalues",googleuser);
   api.register_user(googleuser);
   console.log("responseGoogle",googleuser);
-  window.location.reload();
-}
+
+};
 
 const logout = (response) => {
  console.log(response);
  localStorage.clear();
  window.location.reload();
-}
+};
 
 function Signin(props) {
 

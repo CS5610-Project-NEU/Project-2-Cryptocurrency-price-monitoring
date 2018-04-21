@@ -241,16 +241,16 @@ class Dashboard extends React.Component {
                 {
                     data: infodata,
                     backgroundColor: [
-                        "#00FF00",
-                        "#00BFFF",
-                        "#FFFF00",
-                        "#E50000"
+                        "#ffcc00",
+                        "#c23616",
+                        "#009432",
+                        "#192a56"
                     ],
                     hoverBackgroundColor: [
-                        "#008000",
-                        "#1E90FF",
-                        "#999900",
-                        "#800000"
+                        "#ffeaa7",
+                        "#e66767",
+                        "#A3CB38",
+                        "#0033cc"
                     ]
                 }]
         };

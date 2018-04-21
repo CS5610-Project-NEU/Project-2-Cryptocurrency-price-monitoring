@@ -26,7 +26,7 @@ defmodule Coinbase.Users.User do
     |> validate_confirmation(:password)
     |> validate_password(:password)
     |> put_pass_hash()
-    |> validate_format(:email, ~r/.*?@.*?.com/)
+    |> validate_format(:email, ~r/.*?@.*/)
     |> validate_required([:name, :email, :money, :password_hash])
   end
   def validate_password(changeset, field, options \\ []) do
